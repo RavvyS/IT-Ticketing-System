@@ -1,6 +1,6 @@
 import { FaArrowRightToBracket } from "react-icons/fa6";
 
-const Signup = () => {
+const Landing = () => {
   return (
     <>
       <section className="w-full px-8 text-gray-700 bg-white">
@@ -76,7 +76,7 @@ const Signup = () => {
                 </p>
                 <div className="relative flex flex-col sm:flex-row sm:space-x-4">
                   <a
-                    href="/home"
+                    href="/dashboard/home"
                     className="flex items-center w-full px-6 py-3 mb-3 text-lg text-white bg-indigo-600 rounded-md sm:mb-0 hover:bg-indigo-700 sm:w-auto"
                   >
                     Get Started
@@ -551,4 +551,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Landing;
