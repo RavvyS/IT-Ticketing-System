@@ -8,14 +8,11 @@ function App() {
   return (
     <>
       <BrowserRouter>
-       
-          {window.location.pathname !== "/" && <Navbar />}
-       
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/dashboard/home" element={<Home />} />
-          </Routes>
-    
+        {window.location.pathname !== "/" && <Navbar />}
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/dashboard/home" element={<Home />} />
+        </Routes>
       </BrowserRouter>
     </>
   );
