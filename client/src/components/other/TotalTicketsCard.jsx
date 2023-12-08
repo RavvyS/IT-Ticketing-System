@@ -5,22 +5,22 @@ import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Typography from '@mui/joy/Typography';
 
-export default function CompletedTicketsCard() {
+export default function TotalTicketsCard() {
   return (
     <Card orientation="horizontal" variant="outlined" sx={{ width: 260 }}>
       <CardOverflow>
         <AspectRatio ratio="1" sx={{ width: 90 }}>
           <img
-            src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90"
-            srcSet="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90&dpr=2 2x"
+            src="https://png.pngtree.com/png-clipart/20190516/original/pngtree-list-icon-png-image_3728045.jpg"
+            srcSet="https://png.pngtree.com/png-clipart/20190516/original/pngtree-list-icon-png-image_3728045.jpg"
             loading="lazy"
             alt=""
           />
         </AspectRatio>
       </CardOverflow>
       <CardContent>
-        <Typography fontWeight="md" textColor="success.plainColor">
-          Yosemite Park
+        <Typography fontWeight="md" textColor="primary.plainColor">
+          322 Cases
         </Typography>
         <Typography level="body-sm">California, USA</Typography>
       </CardContent>
@@ -39,7 +39,7 @@ export default function CompletedTicketsCard() {
           borderColor: 'divider',
         }}
       >
-        Ticket
+        All-Out
       </CardOverflow>
     </Card>
   );

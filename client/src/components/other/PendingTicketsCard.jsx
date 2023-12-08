@@ -5,28 +5,29 @@ import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Typography from '@mui/joy/Typography';
 
+
 export default function PendingTicketsCard() {
   return (
     <Card orientation="horizontal" variant="outlined" sx={{ width: 260 }}>
       <CardOverflow>
         <AspectRatio ratio="1" sx={{ width: 90 }}>
           <img
-            src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90"
-            srcSet="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90&dpr=2 2x"
+            src="https://cdn-icons-png.flaticon.com/512/3756/3756719.png"
+            srcSet="https://cdn-icons-png.flaticon.com/512/3756/3756719.png"
             loading="lazy"
             alt=""
           />
         </AspectRatio>
       </CardOverflow>
       <CardContent>
-        <Typography fontWeight="md" textColor="success.plainColor">
-          Yosemite Park
+        <Typography fontWeight="md" textColor="warning.plainColor">
+          122 Cases
         </Typography>
         <Typography level="body-sm">California, USA</Typography>
       </CardContent>
       <CardOverflow
         variant="soft"
-        color="primary"
+        color="warning"
         sx={{
           px: 0.2,
           writingMode: 'vertical-rl',
@@ -39,7 +40,7 @@ export default function PendingTicketsCard() {
           borderColor: 'divider',
         }}
       >
-        Ticket
+        Pending
       </CardOverflow>
     </Card>
   );

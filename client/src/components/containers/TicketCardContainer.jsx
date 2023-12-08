@@ -1,14 +1,14 @@
 import React from "react";
 import SolvedTicketsCard from "../other/SolvedTicketsCard";
 import PendingTicketsCard from "../other/PendingTicketsCard";
-import CompletedTicketsCard from "../other/CompletedTicketsCard";
+import TotalTicketsCard from "../other/TotalTicketsCard";
 
 const TicketCardContainer = () => {
   return (
     <div className="flex m-5 justify-center items-center gap-4">
       <SolvedTicketsCard />
       <PendingTicketsCard />
-      <CompletedTicketsCard />
+      <TotalTicketsCard />
     </div>
   );
 };

@@ -11,8 +11,8 @@ export default function SolvedTicketsCard() {
       <CardOverflow>
         <AspectRatio ratio="1" sx={{ width: 90 }}>
           <img
-            src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90"
-            srcSet="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90&dpr=2 2x"
+            src="https://i.pinimg.com/564x/45/bf/dd/45bfdd61a51c71aca7e0e7cd1f4edd35.jpg"
+            srcSet="https://i.pinimg.com/564x/45/bf/dd/45bfdd61a51c71aca7e0e7cd1f4edd35.jpg"
             loading="lazy"
             alt=""
           />
@@ -20,13 +20,13 @@ export default function SolvedTicketsCard() {
       </CardOverflow>
       <CardContent>
         <Typography fontWeight="md" textColor="success.plainColor">
-          Yosemite Park
+          250 Cases
         </Typography>
         <Typography level="body-sm">California, USA</Typography>
       </CardContent>
       <CardOverflow
         variant="soft"
-        color="primary"
+        color="success"
         sx={{
           px: 0.2,
           writingMode: 'vertical-rl',
@@ -39,7 +39,7 @@ export default function SolvedTicketsCard() {
           borderColor: 'divider',
         }}
       >
-        Ticket
+        Solved
       </CardOverflow>
     </Card>
   );
