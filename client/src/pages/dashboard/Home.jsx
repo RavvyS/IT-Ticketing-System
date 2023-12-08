@@ -18,7 +18,7 @@ const Home = () => {
           </Card>
         </div>
       
-t
+this
       <div class="flex justify-start items-center m-7">
         <div class="bg-white p-4 rounded-lg shadow-lg">
           <Card size="lg">
