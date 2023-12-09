@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        {window.location.pathname !== "/" && <Navbar />}
+        {/* {window.location.pathname !== "/" && <Navbar />} */}
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/dashboard/home" element={<Home />} />
