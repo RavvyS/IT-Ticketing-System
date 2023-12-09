@@ -11,14 +11,14 @@ const Home = () => {
     <div>
       <TicketCardContainer />
 
-      <div class="flex justify-end items-center m-7">
+      <div class="flex justify-end items-center m-5">
         <div>
           <Card size="lg">
             <HomeTable />
           </Card>
         </div>
 
-        <div class="bg-white p-4 rounded-lg shadow-lg">
+        <div class="bg-white p-4 rounded-lg shadow-lg m-3">
           <Card size="lg">
             <Typography level="title-lg">Monthly Sales Figures </Typography>
             <SimpleLineChart />
