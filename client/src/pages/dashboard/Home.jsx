@@ -35,7 +35,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="md:flex justify-end items-center m-4 md:m-5">
+        <div className="md:flex justify-start items-center m-4 md:m-5">
           <Card size="lg">
             <HomeTable />
           </Card>
