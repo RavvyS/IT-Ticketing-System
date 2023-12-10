@@ -1,10 +1,5 @@
 # IT-Ticketing-System
 
-MUI Core - Base UI | Joy UI
-MUI X
-
-Joy UI Templates
-
 Raw SQL || No ORM's
 
 React.Js           - JS
