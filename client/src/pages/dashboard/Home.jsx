@@ -74,13 +74,57 @@ const Home = () => {
   return (
     <div>
       <SidebarLayout>
-      <div className="w-full h-96">
-      <Card>
-        <CardBody>
-          <LineChart chartData={anal} />
+        
+      <Card className="m-5">
+      <CardBody>
+        <StatGroup>
+          <Stat>
+            <StatLabel>Sent</StatLabel>
+            <StatNumber>345,670</StatNumber>
+            <StatHelpText>
+              <StatArrow type="increase" />
+              23.36%
+            </StatHelpText>
+          </Stat>
+
+          <Stat>
+            <StatLabel>Sent</StatLabel>
+            <StatNumber>345,670</StatNumber>
+            <StatHelpText>
+              <StatArrow type="increase" />
+              23.36%
+            </StatHelpText>
+          </Stat>
+
+          <Stat>
+            <StatLabel>Clicked</StatLabel>
+            <StatNumber>45</StatNumber>
+            <StatHelpText>
+              <StatArrow type="decrease" />
+              9.05%
+            </StatHelpText>
+          </Stat>
+
+          <Stat>
+            <StatLabel>Clicked</StatLabel>
+            <StatNumber>45</StatNumber>
+            <StatHelpText>
+              <StatArrow type="decrease" />
+              9.05%
+            </StatHelpText>
+          </Stat>
+          
+        </StatGroup>
         </CardBody>
-      </Card>
-    </div>
+        </Card>
+
+        <div className="m-5">
+          <Card>
+            <CardBody>
+              <LineChart chartData={anal} />
+            </CardBody>
+          </Card>
+        </div>
 
         <div className="flex space-x-5">
           <div className="w-96 shadow-lg m-5">
