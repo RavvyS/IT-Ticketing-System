@@ -1,15 +1,24 @@
 import React from "react";
 import SidebarLayout from "../../components/Layouts/SidebarLayout";
 import TicketManagementTable from "../../components/other/TicketManagementTable";
+
 import { FaAngleRight, FaHouse } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { TbReportAnalytics } from "react-icons/tb";
+
 import { Tooltip } from "react-tooltip";
+
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/react";
 import { Flex } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+} from "@chakra-ui/react";
 
 const TicketManagement = () => {
   return (
@@ -56,7 +65,7 @@ const TicketManagement = () => {
               mr="2"
               variant="outline"
               size="sm"
-              placeholder="Outline"
+              placeholder="Search"
               rounded="md"
             />
             <Select
@@ -64,7 +73,7 @@ const TicketManagement = () => {
               mr="2"
               variant="outline"
               size="sm"
-              placeholder="Outline"
+              placeholder="Filter"
               rounded="md"
             />
             <Select
@@ -72,14 +81,14 @@ const TicketManagement = () => {
               mr="2"
               variant="outline"
               size="sm"
-              placeholder="Outline"
+              placeholder="Number"
               rounded="md"
             />
             <Select
               flex="1"
               variant="outline"
               size="sm"
-              placeholder="Outline"
+              placeholder="Choose"
               rounded="md"
             />
           </Flex>
