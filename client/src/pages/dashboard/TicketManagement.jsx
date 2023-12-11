@@ -13,8 +13,9 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
 } from "@chakra-ui/react";
-
 import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
+import { Select } from "@chakra-ui/react";
 
 const TicketManagement = () => {
   return (
@@ -54,6 +55,34 @@ const TicketManagement = () => {
           >
             <TbReportAnalytics />
           </Button>
+        </div>
+
+        <div className="ml-2 mt-5 flex">
+          <Input
+            className="w-2/3 mr-2"
+            variant="outline"
+            size="sm"
+            placeholder="Outline"
+          />
+
+          <Select
+            className="w-1/4 mr-2"
+            variant="outline"
+            size="sm"
+            placeholder="Outline"
+          />
+          <Select
+            className="w-1/4 mr-2"
+            variant="outline"
+            size="sm"
+            placeholder="Outline"
+          />
+          <Select
+            className="w-1/4"
+            variant="outline"
+            size="sm"
+            placeholder="Outline"
+          />
         </div>
 
         <TicketManagementTable />
