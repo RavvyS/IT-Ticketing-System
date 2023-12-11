@@ -1,21 +1,15 @@
 import React from "react";
 import SidebarLayout from "../../components/Layouts/SidebarLayout";
 import TicketManagementTable from "../../components/other/TicketManagementTable";
-
 import { FaAngleRight, FaHouse } from "react-icons/fa6";
+import { FaSearch } from "react-icons/fa";
 import { TbReportAnalytics } from "react-icons/tb";
-
 import { Tooltip } from "react-tooltip";
-
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-} from "@chakra-ui/react";
-import { Button, ButtonGroup } from "@chakra-ui/react";
-import { Input } from "@chakra-ui/react";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
+import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 const TicketManagement = () => {
   return (
@@ -31,11 +25,9 @@ const TicketManagement = () => {
                 <FaHouse />
               </BreadcrumbLink>
             </BreadcrumbItem>
-
             <BreadcrumbItem>
               <BreadcrumbLink href="#">Dashboard</BreadcrumbLink>
             </BreadcrumbItem>
-
             <BreadcrumbItem>
               <BreadcrumbLink href="#">Ticket Management</BreadcrumbLink>
             </BreadcrumbItem>
@@ -57,32 +49,40 @@ const TicketManagement = () => {
           </Button>
         </div>
 
-        <div className="ml-2 mt-5 flex">
-          <Input
-            className="w-2/3 mr-2"
-            variant="outline"
-            size="sm"
-            placeholder="Outline"
-          />
-
-          <Select
-            className="w-1/4 mr-2"
-            variant="outline"
-            size="sm"
-            placeholder="Outline"
-          />
-          <Select
-            className="w-1/4 mr-2"
-            variant="outline"
-            size="sm"
-            placeholder="Outline"
-          />
-          <Select
-            className="w-1/4"
-            variant="outline"
-            size="sm"
-            placeholder="Outline"
-          />
+        <div className="ml-2 mt-5">
+          <Flex>
+            <Input
+              flex="4"
+              mr="2"
+              variant="outline"
+              size="sm"
+              placeholder="Outline"
+              rounded="md"
+            />
+            <Select
+              flex="1"
+              mr="2"
+              variant="outline"
+              size="sm"
+              placeholder="Outline"
+              rounded="md"
+            />
+            <Select
+              flex="1"
+              mr="2"
+              variant="outline"
+              size="sm"
+              placeholder="Outline"
+              rounded="md"
+            />
+            <Select
+              flex="1"
+              variant="outline"
+              size="sm"
+              placeholder="Outline"
+              rounded="md"
+            />
+          </Flex>
         </div>
 
         <TicketManagementTable />
