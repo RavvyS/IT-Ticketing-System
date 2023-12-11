@@ -5,6 +5,7 @@ import TicketManagementTable from "../../components/other/TicketManagementTable"
 import { FaAngleRight, FaHouse } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { TbReportAnalytics } from "react-icons/tb";
+import { IoMdAddCircleOutline } from "react-icons/io";
 
 import { Tooltip } from "react-tooltip";
 
@@ -19,6 +20,7 @@ import {
   FormErrorMessage,
   FormHelperText,
 } from "@chakra-ui/react";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 
 const TicketManagement = () => {
   return (
@@ -46,8 +48,9 @@ const TicketManagement = () => {
         <div className="ml-2 mt-8 flex items-center">
           <h1 className="text-2xl font-bold">Ticket Management</h1>
           <Tooltip id="report" style={{ borderRadius: "10px" }} place="left" />
+          <Tooltip id="add" style={{ borderRadius: "10px" }} />
           <Button
-            colorScheme="teal"
+            colorScheme="gray"
             size="md"
             variant="outline"
             className="ml-auto"
@@ -55,6 +58,16 @@ const TicketManagement = () => {
             data-tooltip-content="Get Report"
           >
             <TbReportAnalytics />
+          </Button>
+          <Button
+            colorScheme="gray"
+            size="md"
+            variant="outline"
+            className="ml-1"
+            data-tooltip-id="add"
+            data-tooltip-content="Add task"
+          >
+            <IoMdAddCircleOutline />
           </Button>
         </div>
 
