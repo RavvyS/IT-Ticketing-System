@@ -92,7 +92,7 @@ const Home = () => {
             <StatNumber>345,670</StatNumber>
             <StatHelpText>
               <StatArrow type="increase" />
-              23.36%
+              69.36%
             </StatHelpText>
           </Stat>
 
