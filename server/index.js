@@ -2,6 +2,8 @@
 import express from "express";
 import "dotenv/config";
 
+import connection from "./database/dbConfig.js";
+
 // Middleware
 const app = express();
 
