@@ -1,14 +1,14 @@
-import React from 'react'
-import Navbar from '../../components/common/Navbar'
-
-
+import React from "react";
+import Navbar from "../../components/common/Navbar";
+import CustomerTicketTable from "../../components/other/CustomerTicketTable";
 
 const Dash = () => {
   return (
     <div>
-        <Navbar/>
+      <Navbar />
+      <CustomerTicketTable />
     </div>
-  )
-}
+  );
+};
 
-export default Dash
+export default Dash;
