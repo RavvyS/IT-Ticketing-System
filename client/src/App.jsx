@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Home from "./pages/dashboard/Home";
 import TicketManagement from "./pages/dashboard/TicketManagement";
+import Dash from "./pages/customer/Dash";
 
 function App() {
   return (
@@ -9,8 +10,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/dashboard/home" element={<Home/>} />
-          <Route path="/dashboard/ticketManagement" element={<TicketManagement/>} />
+          <Route path="/customer/" element={<Dash />} />
+          <Route path="/dashboard/home" element={<Home />} />
+          <Route
+            path="/dashboard/ticketManagement"
+            element={<TicketManagement />}
+          />
         </Routes>
       </BrowserRouter>
     </>

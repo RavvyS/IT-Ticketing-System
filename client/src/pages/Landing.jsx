@@ -44,7 +44,7 @@ const Landing = () => {
 
           <div className="inline-flex items-center ml-5 space-x-6 lg:justify-end">
             <a
-              href="#"
+              href="dashboard/home"
               className="text-base font-medium leading-6 text-gray-600 whitespace-no-wrap transition duration-150 ease-in-out hover:text-gray-900"
             >
               Sign in
@@ -76,7 +76,7 @@ const Landing = () => {
                 </p>
                 <div className="relative flex flex-col sm:flex-row sm:space-x-4">
                   <a
-                    href="/dashboard/home"
+                    href="customer/"
                     className="flex items-center w-full px-6 py-3 mb-3 text-lg text-white bg-indigo-600 rounded-md sm:mb-0 hover:bg-indigo-700 sm:w-auto"
                   >
                     Get Started
