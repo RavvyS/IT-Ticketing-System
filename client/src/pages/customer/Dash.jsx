@@ -50,14 +50,14 @@ const Dash = () => {
 
       <CustomerTicketTable />
 
-      <div className="flex">
-        <Button colorScheme="teal" variant="outline">
+      <div className="flex items-center justify-center text-center mt-5">
+        <Button colorScheme="teal" variant="outline" className="m-5">
           Create a Ticket
         </Button>
-        <Button colorScheme="teal" variant="outline">
+        <Button colorScheme="teal" variant="outline" className="m-5">
           Create a Ticket
         </Button>
-        <Button colorScheme="teal" variant="outline">
+        <Button colorScheme="teal" variant="outline" className="m-5">
           Create a Ticket
         </Button>
       </div>
