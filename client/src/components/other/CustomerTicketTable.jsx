@@ -2,7 +2,7 @@ import React from "react";
 
 const CustomerTicketTable = () => {
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg m-10 h-auto">
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg mx-10 mt-5 h-auto">
       <div className="sticky top-0">
         <table className="w-full text-sm text-left text-gray-500">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
