@@ -13,9 +13,9 @@
   "dependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
-    "@types/nodemon": "^1.19.6",
     "dotenv": "^16.3.1",
     "mysql2": "^3.6.5",
+    "nodemon": "^3.0.2",
     "parse-json": "^8.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
