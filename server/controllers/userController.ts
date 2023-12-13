@@ -10,8 +10,13 @@ const createToken = (id: any) => {
 const signupUser = async (req: any, res: any) => {
   const { email, password } = req.body;
   try {
-    const user = await userModel.createUser({ email, password });
+    const newUser = await userModel.createUser(email, password);
     // create token
-    const token = createToken(user.id)
-  } catch (error) {}
+    const token = createToken(newUser.insertId); // Assuming id is auto-incremented in your user table
+    res.status(200).json({ token });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
+
+export default signupUser;
