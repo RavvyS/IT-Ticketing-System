@@ -25,7 +25,7 @@ const userModel = {
 
           const user = connection.query("INSERT INTO user VALUES (?, ?)", {
             email,
-            hash,
+            password,
           });
 
           callback(error, results);
