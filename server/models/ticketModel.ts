@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 
 // Interface
 interface Ticket {
@@ -29,4 +29,5 @@ const ticketSchema = new Schema<Ticket>({
   },
 });
 
-export default ticketSchema;
+const ticketModel = model("Ticket", ticketSchema)
+export default ticketModel;
