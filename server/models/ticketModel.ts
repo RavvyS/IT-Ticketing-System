@@ -31,3 +31,4 @@ const ticketSchema = new Schema<Ticket>({
 
 const ticketModel = model("Ticket", ticketSchema)
 export default ticketModel;
+

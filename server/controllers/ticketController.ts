@@ -12,13 +12,13 @@ const getTicket = async (req: any, res: any) => {
 const createTicket = async (req: any, res: any) => {
   const { subject, description, urgency, status, created_at } = req.body;
   try {
-    const response = await ticketModel.create(
+    const response = await ticketModel.create({
       subject,
       description,
       urgency,
       status,
       created_at
-    );
+    });
     res.status(201).json({ response });
   } catch (error) {
     console.error(error);
