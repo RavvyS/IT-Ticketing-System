@@ -26,6 +26,7 @@ const ticketSchema = new Schema<Ticket>({
   },
   created_at: {
     type: Date,
+    default: Date.now,
   },
 });
 
