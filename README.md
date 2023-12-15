@@ -1,7 +1,5 @@
 # IT-Ticketing-System
 
-Raw SQL || No ORM's
-
 React.Js           - JS
 Node.Js/Express.Js - JS
 
