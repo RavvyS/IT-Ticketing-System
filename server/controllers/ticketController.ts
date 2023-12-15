@@ -25,4 +25,14 @@ const createTicket = async (req: any, res: any) => {
   }
 };
 
-export { getTicket, createTicket };
+const getUniqueTicket =  async (req: any, res: any) => {
+  try {
+    const { _id } = req.params
+    const response = await ticketModel.findOne({ id: _id })
+    res.status(200).json({ response })
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export { getTicket, createTicket, getUniqueTicket };

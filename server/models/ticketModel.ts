@@ -2,6 +2,7 @@ import { Schema, model } from "mongoose";
 
 // Interface
 interface Ticket {
+  ticketNum: number;
   subject: string;
   description: string;
   urgency: boolean;
