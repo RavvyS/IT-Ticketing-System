@@ -11,15 +11,10 @@ import {
   FormLabel,
   FormHelperText,
   Switch,
-  ButtonGroup,
-  InputGroup,
-  FormErrorMessage,
-  InputLeftElement,
   Textarea,
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
 } from "@chakra-ui/react";
 
 const Dash = () => {
@@ -89,7 +84,7 @@ const Dash = () => {
           </Flex>
 
           <CustomerTicketTable />
-          
+
         </div>
       )}
 
