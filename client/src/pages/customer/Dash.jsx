@@ -16,6 +16,10 @@ import {
   FormErrorMessage,
   InputLeftElement,
   Textarea,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
 } from "@chakra-ui/react";
 
 const Dash = () => {
@@ -102,26 +106,33 @@ const Dash = () => {
 
       {activeTab === 2 && (
         <div className="mt-10 mx-10">
-          <h1 className="text-4xl mb-10">Create Ticket</h1>
-          <FormControl>
-            <FormLabel>Subject</FormLabel>
-            <Input type="text" />
-            <FormHelperText className="mb-10">
-              Summarize your issue
-            </FormHelperText>
+          <Card>
+            <CardHeader>
+              <h1 className="text-4xl">Create Ticket</h1>
+            </CardHeader>
+            <CardBody>
+              <FormControl>
+                <FormLabel>Subject</FormLabel>
+                <Input type="text" />
+                <FormHelperText className="mb-10">
+                  Summarize your issue
+                </FormHelperText>
 
-            <FormLabel>Description</FormLabel>
-            <Textarea placeholder="Here is a sample placeholder" />
-            <FormHelperText className="mb-10">
-              Describe your issue
-            </FormHelperText>
+                <FormLabel>Description</FormLabel>
+                <Textarea placeholder="Here is a sample placeholder" />
+                <FormHelperText className="mb-10">
+                  Describe your issue
+                </FormHelperText>
 
-            <FormLabel>Urgent ?</FormLabel>
-            <Switch id="urgent" colorScheme='red' />
+                <div className="flex">
+                  <FormLabel>Urgent ?</FormLabel>
+                  <Switch id="urgent" colorScheme="red" />
 
-            <Button colorScheme='blue'>Submit</Button>
-            
-          </FormControl>
+                  <Button colorScheme="green">Submit</Button>
+                </div>
+              </FormControl>
+            </CardBody>
+          </Card>
         </div>
       )}
     </div>
