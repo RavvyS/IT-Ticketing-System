@@ -8,17 +8,18 @@ const createToken = (_id: any) => {
   });
 };
 
+const login = async (req: any, res: any) => {};
+
 const signUp = async (req: any, res: any) => {
   const { email, password } = req.body;
   try {
-    const user = await userModel.signup(email, password)
+    const user = await userModel.signup(email, password);
 
     // Create a token
-    const token = createToken(user._id)
+    const token = createToken(user._id);
     res.status(201).json({ email, token });
   } catch (error) {
-    res.status(400).json(console.log(error)
-    )
+    res.status(400).json(console.log(error));
   }
 };
 
