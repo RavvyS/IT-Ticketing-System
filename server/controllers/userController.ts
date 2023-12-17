@@ -1,35 +1,24 @@
-import bcrypt from "bcrypt";
-import validator from "validator";
 import userModel from "../models/userModel";
+import jwt from "jsonwebtoken";
+
+// magesecretekamekathamawhottigepuko -> This is secret and should be put in .env =(
+const createToken = (_id: any) => {
+  return jwt.sign({ _id: _id }, "magesecretekamekathamawhottigepuko", {
+    expiresIn: "3d",
+  });
+};
 
 const signUp = async (req: any, res: any) => {
   const { email, password } = req.body;
   try {
-    // Validation
-    if (!email || !password) {
-      throw Error("All fields must be filled");
-    }
-    if (!validator.isEmail(email)) {
-      throw Error("Email is not valid");
-    }
-    if (!validator.isStrongPassword(password)) {
-      throw Error("Password not strong enough");
-    }
+    const user = await userModel.signup(email, password)
 
-    const exists = await userModel.findOne({ email });
-
-    if (exists) {
-      throw Error(`Email: ${exists} already in use`);
-    }
-
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(password, salt);
-
-    const user = await userModel.create({ email, password: hash });
-
-    res.status(201).json({ user });
+    // Create a token
+    const token = createToken(user._id)
+    res.status(201).json({ email, token });
   } catch (error) {
-    console.error(error);
+    res.status(400).json(console.log(error)
+    )
   }
 };
 
