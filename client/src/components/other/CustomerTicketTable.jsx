@@ -9,15 +9,25 @@ import {
   Td,
   TableCaption,
   TableContainer,
+  Button,
 } from "@chakra-ui/react";
 
 const CustomerTicketTable = () => {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
-    const response = axios.get("http://localhost:5000/ticket/");
-    
-  });
+    const fetchTicket = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/v1/ticket/"
+        );
+        setTableData(response.data.response);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchTicket();
+  }, []);
 
   return (
     <>
@@ -30,31 +40,23 @@ const CustomerTicketTable = () => {
               <Th>Urgent</Th>
               <Th>Status</Th>
               <Th>Issued Date</Th>
-              <Th isNumeric>multiply by</Th>
+              <Th></Th>
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <Td>inches</Td>
-              <Td>millimetres (mm)</Td>
-              <Td>millimetres (mm)</Td>
-              <Td>millimetres (mm)</Td>
-              <Td isNumeric>25.4</Td>
-            </Tr>
-            <Tr>
-              <Td>feet</Td>
-              <Td>centimetres (cm)</Td>
-              <Td>millimetres (mm)</Td>
-              <Td>millimetres (mm)</Td>
-              <Td isNumeric>30.48</Td>
-            </Tr>
-            <Tr>
-              <Td>yards</Td>
-              <Td>metres (m)</Td>
-              <Td>millimetres (mm)</Td>
-              <Td>millimetres (mm)</Td>
-              <Td isNumeric>0.91444</Td>
-            </Tr>
+            {tableData.map((ticket) => (
+              <Tr key={ticket._id}>
+                <Td>{ticket.subject}</Td>
+                <Td>{ticket.subject}</Td>
+                <Td>{ticket.subject}</Td>
+                <Td>{ticket.subject}</Td>
+                <Td>
+                  <Button colorScheme="teal" variant="outline">
+                    Edit
+                  </Button>
+                </Td>
+              </Tr>
+            ))}
           </Tbody>
         </Table>
       </TableContainer>
