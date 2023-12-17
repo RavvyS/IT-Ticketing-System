@@ -11,6 +11,7 @@ interface User {
 // Extend the Mongoose Model interface with custom static methods
 interface UserModel extends Model<User> {
   signup(email: string, password: string): Promise<User>;
+  login(email: string, passowrd: string): Promise<User>;
 }
 
 const userSchema = new Schema<User>({

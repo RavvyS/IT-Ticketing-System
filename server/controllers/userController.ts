@@ -8,7 +8,18 @@ const createToken = (_id: any) => {
   });
 };
 
-const login = async (req: any, res: any) => {};
+const login = async (req: any, res: any) => {
+  const { email, password } = req.bodyParser;
+  try {
+    const user = await userModel.login(email, password);
+
+     // Create a token
+     const token = createToken(user._id);
+     res.status(200).json({ email, token });
+  } catch (error) {
+    res.status(400).json(console.log(error));
+  }
+};
 
 const signUp = async (req: any, res: any) => {
   const { email, password } = req.body;
@@ -23,4 +34,4 @@ const signUp = async (req: any, res: any) => {
   }
 };
 
-export { signUp };
+export { signUp, login };
