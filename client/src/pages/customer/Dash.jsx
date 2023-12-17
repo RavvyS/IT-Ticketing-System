@@ -125,8 +125,11 @@ const Dash = () => {
                 </FormHelperText>
 
                 <div className="flex">
-                  <FormLabel>Urgent ?</FormLabel>
-                  <Switch id="urgent" colorScheme="red" />
+                  <FormControl>
+                    <FormLabel htmlFor="Urgent">Urgent?</FormLabel>
+                    <Switch id="urgent" colorScheme="red" />
+                  </FormControl>
+                  
 
                   <Button colorScheme="green">Submit</Button>
                 </div>
