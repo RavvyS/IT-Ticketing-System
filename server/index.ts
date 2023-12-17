@@ -8,6 +8,7 @@ import { connection } from "./db/connection";
 
 // Custom Routing
 import ticketRouter from "./routes/ticketRouter";
+import userRouter from "./routes/userRouter";
 
 // Instances
 const app: Application = express();
@@ -19,6 +20,7 @@ dotenv.config();
 
 // API Endpoints
 app.use("/api/v1/ticket", ticketRouter);
+app.use("/api/v1/user/", userRouter);
 
 const port: any = process.env.PORT || 9000;
 

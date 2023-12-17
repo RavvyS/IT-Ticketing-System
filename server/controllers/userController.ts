@@ -32,3 +32,5 @@ const signUp = async (req: any, res: any) => {
     console.error(error);
   }
 };
+
+export { signUp };
