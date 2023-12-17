@@ -2,11 +2,21 @@ import React, { useState } from "react";
 import Navbar from "../../components/common/Navbar";
 import CustomerTicketTable from "../../components/other/CustomerTicketTable";
 
-import { Button, ButtonGroup } from "@chakra-ui/react";
-import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
-import { Select } from "@chakra-ui/react";
-import { Flex } from "@chakra-ui/react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import {
+  Button,
+  Input,
+  Select,
+  Flex,
+  FormControl,
+  FormLabel,
+  FormHelperText,
+  Switch,
+  ButtonGroup,
+  InputGroup,
+  FormErrorMessage,
+  InputLeftElement,
+  Textarea,
+} from "@chakra-ui/react";
 
 const Dash = () => {
   const [activeTab, setActiveTab] = useState(1);
@@ -90,7 +100,30 @@ const Dash = () => {
         </div>
       )}
 
-      {activeTab === 2 && <h1>tabs2</h1>}
+      {activeTab === 2 && (
+        <div className="mt-10 mx-10">
+          <h1 className="text-4xl mb-10">Create Ticket</h1>
+          <FormControl>
+            <FormLabel>Subject</FormLabel>
+            <Input type="text" />
+            <FormHelperText className="mb-10">
+              Summarize your issue
+            </FormHelperText>
+
+            <FormLabel>Description</FormLabel>
+            <Textarea placeholder="Here is a sample placeholder" />
+            <FormHelperText className="mb-10">
+              Describe your issue
+            </FormHelperText>
+
+            <FormLabel>Urgent ?</FormLabel>
+            <Switch id="urgent" colorScheme='red' />
+
+            <Button colorScheme='blue'>Submit</Button>
+            
+          </FormControl>
+        </div>
+      )}
     </div>
   );
 };
