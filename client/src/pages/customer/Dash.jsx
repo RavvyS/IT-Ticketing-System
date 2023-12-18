@@ -19,9 +19,30 @@ import {
 
 const Dash = () => {
   const [activeTab, setActiveTab] = useState(1);
+  const [createTicket, setCreateTicket] = useState({
+    subject: "",
+    description: "",
+    urgency: "",
+    status: "",
+    created_at: "",
+  });
 
   const handleTabClick = (tabNumber) => {
     setActiveTab(tabNumber);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/ticket/",
+        createTicket
+      );
+      console.log("POST Request Successful:", response);
+      window.location.reload();
+    } catch (error) {
+      console.error("POST Request Failed:", error);
+    }
   };
 
   return (
@@ -84,7 +105,6 @@ const Dash = () => {
           </Flex>
 
           <CustomerTicketTable />
-
         </div>
       )}
 
@@ -95,29 +115,30 @@ const Dash = () => {
               <h1 className="text-4xl">Create Ticket</h1>
             </CardHeader>
             <CardBody>
-              <FormControl>
-                <FormLabel>Subject</FormLabel>
-                <Input type="text" />
-                <FormHelperText className="mb-10">
-                  Summarize your issue
-                </FormHelperText>
+              <form onSubmit={handleSubmit}>
+                <FormControl>
+                  <FormLabel>Subject</FormLabel>
+                  <Input type="text" />
+                  <FormHelperText className="mb-10">
+                    Summarize your issue
+                  </FormHelperText>
 
-                <FormLabel>Description</FormLabel>
-                <Textarea placeholder="Here is a sample placeholder" />
-                <FormHelperText className="mb-10">
-                  Describe your issue
-                </FormHelperText>
+                  <FormLabel>Description</FormLabel>
+                  <Textarea placeholder="Here is a sample placeholder" />
+                  <FormHelperText className="mb-10">
+                    Describe your issue
+                  </FormHelperText>
 
-                <div className="flex">
-                  <FormControl>
-                    <FormLabel htmlFor="Urgent">Urgent?</FormLabel>
-                    <Switch id="urgent" colorScheme="red" />
-                  </FormControl>
-                  
+                  <div className="flex">
+                    <FormControl>
+                      <FormLabel htmlFor="Urgent">Urgent?</FormLabel>
+                      <Switch id="urgent" colorScheme="red" />
+                    </FormControl>
 
-                  <Button colorScheme="green">Submit</Button>
-                </div>
-              </FormControl>
+                    <Button colorScheme="green">Submit</Button>
+                  </div>
+                </FormControl>
+              </form>
             </CardBody>
           </Card>
         </div>
