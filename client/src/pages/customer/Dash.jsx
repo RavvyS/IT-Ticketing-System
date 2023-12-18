@@ -22,13 +22,20 @@ const Dash = () => {
   const [createTicket, setCreateTicket] = useState({
     subject: "",
     description: "",
-    urgency: "",
-    status: 1,
+    urgency: false,
+    status: 0,
     created_at: "",
   });
 
   const handleTabClick = (tabNumber) => {
     setActiveTab(tabNumber);
+  };
+
+  const handleSwitchChange = () => {
+    setCreateTicket((prevTicket) => ({
+      ...prevTicket,
+      urgency: !prevTicket.urgency,
+    }));
   };
 
   const handleSubmit = async (event) => {
@@ -132,7 +139,12 @@ const Dash = () => {
                   <div className="flex">
                     <FormControl>
                       <FormLabel htmlFor="Urgent">Urgent?</FormLabel>
-                      <Switch id="urgent" colorScheme="red" />
+                      <Switch
+                        id="urgent"
+                        colorScheme="red"
+                        onChange={handleSwitchChange}
+                        isChecked={createTicket.urgency}
+                      />
                     </FormControl>
 
                     <Button colorScheme="green">Submit</Button>
