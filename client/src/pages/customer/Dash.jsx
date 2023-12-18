@@ -23,7 +23,7 @@ const Dash = () => {
     subject: "",
     description: "",
     urgency: "",
-    status: "",
+    status: 1,
     created_at: "",
   });
 
