@@ -48,7 +48,7 @@ const CustomerTicketTable = () => {
               <Tr key={ticket._id}>
                 <Td>{ticket.subject}</Td>
                 <Td>{ticket.status}</Td>
-                <Td>{ticket.urgency}Yes</Td>
+                <Td>{ticket.urgency ? "Yes" : "No"}</Td>
                 <Td>{ticket.created_at}</Td>
                 <Td>
                   <Button colorScheme="teal" variant="outline">

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import Navbar from "../../components/common/Navbar";
 import CustomerTicketTable from "../../components/other/CustomerTicketTable";
 
@@ -31,6 +32,16 @@ const Dash = () => {
     setActiveTab(tabNumber);
   };
 
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    const updatedCreateTicket = {
+      ...createTicket,
+      created_at: new Date().toISOString(), // Use ISO format for date
+      [name]: value,
+    };
+    setCreateTicket(updatedCreateTicket);
+  };
+
   const handleSwitchChange = () => {
     setCreateTicket((prevTicket) => ({
       ...prevTicket,
@@ -51,6 +62,13 @@ const Dash = () => {
       console.error("POST Request Failed:", error);
     }
   };
+
+  const handleUrgency = () => {
+    if( createTicket.urgency === true)  {
+      "yes"
+    } else
+    "no"
+  }
 
   return (
     <div>
@@ -125,13 +143,23 @@ const Dash = () => {
               <form onSubmit={handleSubmit}>
                 <FormControl>
                   <FormLabel>Subject</FormLabel>
-                  <Input type="text" />
+                  <Input
+                    type="text"
+                    name="subject"
+                    value={createTicket.subject}
+                    onChange={handleInputChange}
+                  />
                   <FormHelperText className="mb-10">
                     Summarize your issue
                   </FormHelperText>
 
                   <FormLabel>Description</FormLabel>
-                  <Textarea placeholder="Here is a sample placeholder" />
+                  <Textarea
+                    placeholder="Here is a sample placeholder"
+                    name="description"
+                    value={createTicket.description}
+                    onChange={handleInputChange}
+                  />
                   <FormHelperText className="mb-10">
                     Describe your issue
                   </FormHelperText>
@@ -147,7 +175,9 @@ const Dash = () => {
                       />
                     </FormControl>
 
-                    <Button colorScheme="green">Submit</Button>
+                    <Button type="submit" colorScheme="green">
+                      Submit
+                    </Button>
                   </div>
                 </FormControl>
               </form>
