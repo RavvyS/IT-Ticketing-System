@@ -10,7 +10,27 @@ import {
   TableCaption,
   TableContainer,
   Button,
+  Tag,
+  TagLabel,
+  TagLeftIcon,
+  TagRightIcon,
+  TagCloseButton,
 } from "@chakra-ui/react";
+
+const getStatusLabel = (status) => {
+  switch (status) {
+    case 0:
+      return <Tag size={"md"} variant={'solid'} colorScheme="yellow">Pending</Tag>;
+    case 1:
+      return <Tag size={"md"} variant={'solid'} colorScheme="cyan">Working On</Tag>;
+    case 2:
+      return <Tag size={"md"} variant={'solid'} colorScheme="green">Completed</Tag>;
+    case 4:
+      return <Tag size={"md"} variant={'solid'} colorScheme="red">Canceled</Tag>;
+    default:
+      return <Tag size={"md"}>Unknown Status</Tag>;
+  }
+};
 
 const CustomerTicketTable = () => {
   const [tableData, setTableData] = useState([]);
@@ -47,7 +67,7 @@ const CustomerTicketTable = () => {
             {tableData.map((ticket) => (
               <Tr key={ticket._id}>
                 <Td>{ticket.subject}</Td>
-                <Td>{ticket.status}</Td>
+                <Td>{getStatusLabel(ticket.status)}</Td>
                 <Td>{ticket.urgency ? "Yes" : "No"}</Td>
                 <Td>{ticket.created_at}</Td>
                 <Td>
