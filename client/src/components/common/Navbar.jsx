@@ -1,15 +1,13 @@
 import React from "react";
 
-import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react";
 import {
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
   MenuGroup,
-  MenuOptionGroup,
   MenuDivider,
+  Avatar
 } from "@chakra-ui/react";
 
 const Navbar = () => {
