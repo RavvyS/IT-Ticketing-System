@@ -11,7 +11,12 @@ import {
   TableContainer,
   Button,
   Tag,
+  Stack,
+  Box,
+  HStack,
+  IconButton,
 } from "@chakra-ui/react";
+import { FaAnglesRight, FaAnglesLeft } from "react-icons/fa6";
 
 const getStatusLabel = (status) => {
   switch (status) {
@@ -28,8 +33,11 @@ const getStatusLabel = (status) => {
   }
 };
 
+const ITEMS_PER_PAGE = 10
+
 const CustomerTicketTable = () => {
   const [tableData, setTableData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1) 
 
   useEffect(() => {
     const fetchTicket = async () => {
@@ -44,6 +52,15 @@ const CustomerTicketTable = () => {
     };
     fetchTicket();
   }, []);
+
+  const totalPages = Math.ceil(tableData.length/ITEMS_PER_PAGE)
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
+  const endIndex = startIndex + ITEMS_PER_PAGE
+  const currentItems = tableData.slice(startIndex, endIndex)
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage)
+  }
 
   return (
     <>
@@ -76,6 +93,24 @@ const CustomerTicketTable = () => {
           </Tbody>
         </Table>
       </TableContainer>
+
+      {/* Pagination */}
+      <Stack direction="row" justify="center" mt={4} spacing={4} className="m-5">
+        <HStack>
+          <IconButton
+            icon={<FaAnglesLeft />}
+            onClick={() => handlePageChange(currentPage - 1)}
+            isDisabled={currentPage === 1}
+          />
+          <Box>{`${currentPage} of ${totalPages}`}</Box>
+          <IconButton
+            icon={<FaAnglesRight/>}
+            onClick={() => handlePageChange(currentPage + 1)}
+            isDisabled={currentPage === totalPages}
+          />
+        </HStack>
+      </Stack>
+      {/* Pagination End */}
     </>
   );
 };
