@@ -110,7 +110,7 @@ const CustomerTicketTable = () => {
           />
         </HStack>
       </Stack>
-      {/* Pagination Ending */}
+      {/* Pagination End */}
     </>
   );
 };
