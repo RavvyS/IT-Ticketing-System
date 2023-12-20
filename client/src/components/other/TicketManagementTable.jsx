@@ -1,249 +1,250 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
+import { toast } from "sonner";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+  Tag,
+  Stack,
+  Box,
+  HStack,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Badge,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Button,
+  Input,
+  Textarea,
+  Editable,
+  EditableInput,
+  EditableTextarea,
+  EditablePreview,
+} from "@chakra-ui/react";
+import {
+  FaAnglesRight,
+  FaAnglesLeft,
+  FaEllipsisVertical,
+  FaRegTrashCan,
+} from "react-icons/fa6";
+import { FaRegEdit } from "react-icons/fa";
+
+const getStatusLabel = (status) => {
+  switch (status) {
+    case 0:
+      return (
+        <Tag size={"md"} variant={"solid"} colorScheme="yellow">
+          Pending
+        </Tag>
+      );
+    case 1:
+      return (
+        <Tag size={"md"} variant={"solid"} colorScheme="cyan">
+          Working On
+        </Tag>
+      );
+    case 2:
+      return (
+        <Tag size={"md"} variant={"solid"} colorScheme="green">
+          Completed
+        </Tag>
+      );
+    case 4:
+      return (
+        <Tag size={"md"} variant={"solid"} colorScheme="red">
+          Canceled
+        </Tag>
+      );
+    default:
+      return <Tag size={"md"}>Unknown Status</Tag>;
+  }
+};
+
+const ITEMS_PER_PAGE = 10;
 
 const TicketManagementTable = () => {
+  const [tableData, setTableData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [editSelected, setEditSelected] = useState(null);
+
+  useEffect(() => {
+    const fetchTicket = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/v1/ticket/"
+        );
+        setTableData(response.data.response.reverse());
+      } catch (error) {
+        console.error(error);
+        toast.error("Failed to load tickets");
+      }
+    };
+    fetchTicket();
+  }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/v1/ticket/${id}`
+      );
+      console.log("Delete response:", response);
+      setTableData((prevTableData) =>
+        prevTableData.filter((ticket) => ticket._id !== id)
+      );
+      toast.success(`Ticket removed successfully`);
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to remove ticket");
+    }
+  };
+
+  const totalPages = Math.ceil(tableData.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const currentItems = tableData.slice(startIndex, endIndex);
+
+  const handleEdit = (ticket) => {
+    setEditSelected(ticket);
+    onOpen();
+  };
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
+  const parseReadableId = (id) => {
+    // Your custom parsing logic here
+    // Example: Extract first 5 digits and prepend with "TKT-"
+    return `T-${id.substring(24, 21)}`;
+  };
+
   return (
-    
-    
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg ml-2 mt-5 h-64">
-          <div className="sticky top-0">
-            <table className="w-full text-sm text-left text-gray-500">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-                <tr className="bg-gray-200 border-b">
-                  <th scope="col" className="px-6 py-3">
-                    Product name
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Color
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Category
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Price
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    <span className="sr-only">Edit</span>
-                  </th>
-                </tr>
-              </thead>
-            </table>
-          </div>
-          <div className="overflow-y-auto max-h-64">
-            <table className="w-full text-sm text-left text-gray-500">
-              <tbody className="bg-white border-b hover:bg-gray-50">
-             <tr className="bg-white hover:bg-gray-50">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-              >
-                Apple MacBook Pro 17"
-              </th>
-              <td className="px-6 py-4">Silver</td>
-              <td className="px-6 py-4">Laptop</td>
-              <td className="px-6 py-4">$2999</td>
-              <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="bg-white border-b hover:bg-gray-50">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-              >
-                Microsoft Surface Pro
-              </th>
-              <td className="px-6 py-4">White</td>
-              <td className="px-6 py-4">Laptop PC</td>
-              <td className="px-6 py-4">$1999</td>
-              <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="bg-white hover:bg-gray-50">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-              >
-                Magic Mouse 2
-              </th>
-              <td className="px-6 py-4">Black</td>
-              <td className="px-6 py-4">Accessories</td>
-              <td className="px-6 py-4">$99</td>
-              <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="bg-white hover:bg-gray-50">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-              >
-                Magic Mouse 2
-              </th>
-              <td className="px-6 py-4">Black</td>
-              <td className="px-6 py-4">Accessories</td>
-              <td className="px-6 py-4">$99</td>
-              <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="bg-white hover:bg-gray-50">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-              >
-                Magic Mouse 2
-              </th>
-              <td className="px-6 py-4">Black</td>
-              <td className="px-6 py-4">Accessories</td>
-              <td className="px-6 py-4">$99</td>
-              <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="bg-white hover:bg-gray-50">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-              >
-                Magic Mouse 2
-              </th>
-              <td className="px-6 py-4">Black</td>
-              <td className="px-6 py-4">Accessories</td>
-              <td className="px-6 py-4">$99</td>
-              <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="bg-white hover:bg-gray-50">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-              >
-                Magic Mouse 2
-              </th>
-              <td className="px-6 py-4">Black</td>
-              <td className="px-6 py-4">Accessories</td>
-              <td className="px-6 py-4">$99</td>
-              <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="bg-white hover:bg-gray-50">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-              >
-                Magic Mouse 2
-              </th>
-              <td className="px-6 py-4">Black</td>
-              <td className="px-6 py-4">Accessories</td>
-              <td className="px-6 py-4">$99</td>
-              <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="bg-white hover:bg-gray-50">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-              >
-                Magic Mouse 2
-              </th>
-              <td className="px-6 py-4">Black</td>
-              <td className="px-6 py-4">Accessories</td>
-              <td className="px-6 py-4">$99</td>
-              <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="bg-white hover:bg-gray-50">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-              >
-                Magic Mouse 2
-              </th>
-              <td className="px-6 py-4">Black</td>
-              <td className="px-6 py-4">Accessories</td>
-              <td className="px-6 py-4">$99</td>
-              <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="bg-white hover:bg-gray-50">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-              >
-                Magic Mouse 2
-              </th>
-              <td className="px-6 py-4">Black</td>
-              <td className="px-6 py-4">Accessories</td>
-              <td className="px-6 py-4">$99</td>
-              <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <>
+      <TableContainer className="mt-5">
+        <Table variant="simple" size={"sm"}>
+          <TableCaption>View of the issued tickets</TableCaption>
+          <Thead className="bg-gray-200 border-b">
+            <Tr>
+              <Th>Num</Th>
+              <Th>Subject</Th>
+              <Th>Status</Th>
+              <Th>Urgent</Th>
+              <Th>Issued Date</Th>
+              <Th></Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {tableData.map((ticket) => (
+              <Tr key={ticket._id}>
+                <Td>{parseReadableId(ticket._id)}</Td>
+                <Td>{ticket.subject}</Td>
+                <Td>{getStatusLabel(ticket.status)}</Td>
+                <Td>
+                  {ticket.urgency ? (
+                    <Badge colorScheme="red">Yes</Badge>
+                  ) : (
+                    <Badge>No</Badge>
+                  )}
+                </Td>
+                <Td>{ticket.created_at}</Td>
+                <Td>
+                  <Menu>
+                    <MenuButton
+                      as={IconButton}
+                      icon={<FaEllipsisVertical />}
+                    ></MenuButton>
+                    <MenuList>
+                      <MenuItem
+                        icon={<FaRegEdit />}
+                        onClick={() => handleEdit(ticket)}
+                      >
+                        Edit
+                      </MenuItem>
+                      <MenuItem
+                        icon={<FaRegTrashCan />}
+                        onClick={() => handleDelete(ticket._id)}
+                      >
+                        Remove
+                      </MenuItem>
+                    </MenuList>
+                  </Menu>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </TableContainer>
+
+      {/* Pagination */}
+      <Stack
+        direction="row"
+        justify="center"
+        mt={4}
+        spacing={4}
+        className="m-5"
+      >
+        <HStack>
+          <IconButton
+            icon={<FaAnglesLeft />}
+            onClick={() => handlePageChange(currentPage - 1)}
+            isDisabled={currentPage === 1}
+          />
+          <Box>{`${currentPage} of ${totalPages}`}</Box>
+          <IconButton
+            icon={<FaAnglesRight />}
+            onClick={() => handlePageChange(currentPage + 1)}
+            isDisabled={currentPage === totalPages}
+          />
+        </HStack>
+      </Stack>
+      {/* Pagination End */}
+
+      {/* Update/Edit Modal */}
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Edit Ticket</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            {editSelected && (
+              <>
+                <div className="my-5">
+                  <Input value={editSelected.subject} />
+                </div>
+                <div className="my-5">
+                  <Textarea value={editSelected.description} />
+                </div>
+              </>
+            )}
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      {/* Update/Edit Modal */}
+    </>
   );
 };
 
