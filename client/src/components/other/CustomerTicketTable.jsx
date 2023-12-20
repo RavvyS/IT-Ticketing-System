@@ -87,7 +87,7 @@ const CustomerTicketTable = () => {
         const response = await axios.delete(`http://localhost:5000/api/v1/ticket/${id}`)
         console.log('Delete response:', response);
         setTableData((prevTableData) => prevTableData.filter(ticket => ticket._id !==  id))
-        toast.success(`Ticket successfully removed`)
+        toast.success(`Ticket removed successfully`)
       } catch (error) {
         console.error(error);
         toast.error('Failed to remove ticket')

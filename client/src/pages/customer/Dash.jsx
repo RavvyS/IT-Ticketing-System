@@ -52,6 +52,13 @@ const Dash = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Validation
+    if (!createTicket.subject || !createTicket.description) {
+      toast.error("Please fill all the required fields");
+      return;
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:5000/api/v1/ticket/",
