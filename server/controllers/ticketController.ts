@@ -29,37 +29,46 @@ const getUniqueTicket = async (req: any, res: any) => {
   try {
     const { id } = req.params;
     const response = await ticketModel.findById(id);
-    if(!id) {
-      res.status(404).json(`No Ticket with id:${id}...`)
+    if (!response) {
+      res.status(404).json({ error: "Ticket not found" });
+      return;
     }
     res.status(200).json({ response });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
-
-const editTicket = async (req: any, res:any) => {
-  const { subject, description } =  req.body
+const editTicket = async (req: any, res: any) => {
+  const { subject, description } = req.body;
   try {
-    const {_id } = req.params
-    const response = await ticketModel.findOneAndUpdate({ _id }, { subject, description})
-    res.status(200).json({ response })
+    const { id } = req.params;
+    const response = await ticketModel.findOneAndUpdate(
+      { _id: id },
+      { subject, description }
+    );
+    if (!response) {
+      res.status(404).json({ error: "Ticket not found" });
+      return;
+    }
+    res.status(200).json({subject, description });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
-}
+};
 
 const deleteTicket = async (req: any, res: any) => {
   try {
-    const { _id } = req.params;
-    const response = await ticketModel.findOneAndDelete({ _id });
+    const { id } = req.params;
+    const response = await ticketModel.findOneAndDelete({ _id: id });
+    if (!response) {
+      res.status(404).json({ error: "Ticket not found" });
+      return;
+    }
     res.status(200).json({ response });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import shortid from "shortid";
+
 import { toast } from "sonner";
 import {
   Table,
@@ -29,8 +31,8 @@ import {
   ModalCloseButton,
   useDisclosure,
   Button,
-  Input, 
-  Textarea, 
+  Input,
+  Textarea,
   Editable,
   EditableInput,
   EditableTextarea,
@@ -43,6 +45,8 @@ import {
   FaRegTrashCan,
 } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
+
+
 
 const getStatusLabel = (status) => {
   switch (status) {
@@ -128,6 +132,12 @@ const CustomerTicketTable = () => {
     setCurrentPage(newPage);
   };
 
+  const parseReadableId = (id) => {
+    // Your custom parsing logic here
+    // Example: Extract first 5 digits and prepend with "TKT-"
+    return `T-${id.substring(24, 21)}`;
+  };
+
   return (
     <>
       <TableContainer className="mt-5">
@@ -135,6 +145,7 @@ const CustomerTicketTable = () => {
           <TableCaption>View of the issued tickets</TableCaption>
           <Thead className="bg-gray-200 border-b">
             <Tr>
+              <Th>Num</Th>
               <Th>Subject</Th>
               <Th>Status</Th>
               <Th>Urgent</Th>
@@ -145,6 +156,7 @@ const CustomerTicketTable = () => {
           <Tbody>
             {tableData.map((ticket) => (
               <Tr key={ticket._id}>
+                <Td>{parseReadableId(ticket._id)}</Td>
                 <Td>{ticket.subject}</Td>
                 <Td>{getStatusLabel(ticket.status)}</Td>
                 <Td>
@@ -162,7 +174,10 @@ const CustomerTicketTable = () => {
                       icon={<FaEllipsisVertical />}
                     ></MenuButton>
                     <MenuList>
-                      <MenuItem icon={<FaRegEdit />} onClick={ () => handleEdit(ticket)}>
+                      <MenuItem
+                        icon={<FaRegEdit />}
+                        onClick={() => handleEdit(ticket)}
+                      >
                         Edit
                       </MenuItem>
                       <MenuItem
@@ -211,14 +226,14 @@ const CustomerTicketTable = () => {
           <ModalHeader>Edit Ticket</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-          {editSelected && (
+            {editSelected && (
               <>
-              <div className="my-5">
-              <Input value={editSelected.subject} />
-              </div>
-              <div className="my-5">
-              <Textarea value={editSelected.description} />
-              </div>
+                <div className="my-5">
+                  <Input value={editSelected.subject} />
+                </div>
+                <div className="my-5">
+                  <Textarea value={editSelected.description} />
+                </div>
               </>
             )}
           </ModalBody>
