@@ -42,6 +42,7 @@ import {
   FaAnglesLeft,
   FaEllipsisVertical,
   FaRegTrashCan,
+  FaArrowRightToBracket,
 } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
 
@@ -138,11 +139,12 @@ const TicketManagementTable = () => {
   return (
     <>
       <TableContainer className="mt-5">
-        <Table variant="simple" size={"sm"}>
+        <Table variant="simple" size={"sm"} className="">
           <TableCaption>View of the issued tickets</TableCaption>
           <Thead className="bg-gray-200 border-b">
             <Tr>
               <Th>Num</Th>
+              <Th>Company</Th>
               <Th>Subject</Th>
               <Th>Status</Th>
               <Th>Urgent</Th>
@@ -154,6 +156,7 @@ const TicketManagementTable = () => {
             {tableData.map((ticket) => (
               <Tr key={ticket._id}>
                 <Td>{parseReadableId(ticket._id)}</Td>
+                <Td className="font-semibold">Surge Global</Td>
                 <Td>{ticket.subject}</Td>
                 <Td>{getStatusLabel(ticket.status)}</Td>
                 <Td>
@@ -165,26 +168,9 @@ const TicketManagementTable = () => {
                 </Td>
                 <Td>{ticket.created_at}</Td>
                 <Td>
-                  <Menu>
-                    <MenuButton
-                      as={IconButton}
-                      icon={<FaEllipsisVertical />}
-                    ></MenuButton>
-                    <MenuList>
-                      <MenuItem
-                        icon={<FaRegEdit />}
-                        onClick={() => handleEdit(ticket)}
-                      >
-                        Edit
-                      </MenuItem>
-                      <MenuItem
-                        icon={<FaRegTrashCan />}
-                        onClick={() => handleDelete(ticket._id)}
-                      >
-                        Remove
-                      </MenuItem>
-                    </MenuList>
-                  </Menu>
+                  <a href="/dashboard/ticketManagement/detailedView">
+                    <FaArrowRightToBracket />
+                  </a>
                 </Td>
               </Tr>
             ))}

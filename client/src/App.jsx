@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Home from "./pages/dashboard/Home";
-import TicketManagement from "./pages/dashboard/TicketManagement";
+import TicketManagement from "./pages/dashboard/ticketManagement/Home";
 import Dash from "./pages/customer/Dash";
+import DetailedView from "./pages/dashboard/ticketManagement/DetailedView";
 
 import { Toaster, toast } from "sonner";
 
@@ -19,6 +20,10 @@ function App() {
             path="/dashboard/ticketManagement"
             element={<TicketManagement />}
           />
+          <Route
+            path="/dashboard/ticketManagement/detailedView"
+            element={<DetailedView/>}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </>

@@ -1,6 +1,6 @@
 import React from "react";
-import SidebarLayout from "../../components/Layouts/SidebarLayout";
-import TicketManagementTable from "../../components/other/TicketManagementTable";
+import SidebarLayout from "../../../components/Layouts/SidebarLayout";
+import TicketManagementTable from "../../../components/other/TicketManagementTable";
 
 import { FaAngleRight, FaHouse } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 
-const TicketManagement = () => {
+const Home = () => {
   return (
     <div>
       <SidebarLayout>
@@ -113,4 +113,4 @@ const TicketManagement = () => {
   );
 };
 
-export default TicketManagement;
+export default Home;
