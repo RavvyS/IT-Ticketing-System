@@ -27,30 +27,40 @@ const createTicket = async (req: any, res: any) => {
 
 const getUniqueTicket = async (req: any, res: any) => {
   try {
-    const { _id } = req.params;
-    const response = await ticketModel.findOne({ id: _id });
+    const { id } = req.params;
+    const response = await ticketModel.findById(id);
+    if(!id) {
+      res.status(404).json(`No Ticket with id:${id}...`)
+    }
     res.status(200).json({ response });
   } catch (error) {
     console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 
-const updateTicket = async (req: any, res:any) => {
+
+const editTicket = async (req: any, res:any) => {
+  const { subject, description } =  req.body
   try {
-    
+    const {_id } = req.params
+    const response = await ticketModel.findOneAndUpdate({ _id }, { subject, description})
+    res.status(200).json({ response })
   } catch (error) {
-    
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 }
 
 const deleteTicket = async (req: any, res: any) => {
   try {
     const { _id } = req.params;
-    const response = await ticketModel.findOneAndDelete({ id: _id });
+    const response = await ticketModel.findOneAndDelete({ _id });
     res.status(200).json({ response });
   } catch (error) {
     console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 
-export { getTicket, createTicket, getUniqueTicket, deleteTicket };
+export { getTicket, createTicket, getUniqueTicket, deleteTicket, editTicket };
