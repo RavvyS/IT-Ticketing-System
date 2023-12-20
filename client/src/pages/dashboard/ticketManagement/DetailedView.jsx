@@ -2,26 +2,7 @@ import React from "react";
 
 import SidebarLayout from "../../../components/Layouts/SidebarLayout";
 
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Button,
-  Heading,
-  SimpleGrid,
-  Text,
-  Center,
-} from "@chakra-ui/react";
-import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react";
-import {
-    Tag,
-    TagLabel,
-    TagLeftIcon,
-    TagRightIcon,
-    TagCloseButton,
-  } from '@chakra-ui/react'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Tag, Avatar, Center } from "@chakra-ui/react";
 import { FaAngleRight, FaHouse } from "react-icons/fa6";
 
 const DetailedView = () => {
