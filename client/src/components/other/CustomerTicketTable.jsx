@@ -76,24 +76,21 @@ const CustomerTicketTable = () => {
         setTableData(response.data.response);
       } catch (error) {
         console.error(error);
+        toast.error('Failed to load tickets')
       }
     };
     fetchTicket();
   }, []);
 
-  useEffect(() => {
-    const deleteTicket = async () => {
-      
-    }
-    deleteTicket()
-  }, [])
-
-  const handleDelete = async () => {
+  const handleDelete = async (id) => {
       try {
-        const response = await axios.delete("http://localhost:5000/api/v1/ticket/:id", deleteTicket)
-        toast.success(`Ticket ${response.subject} successfully deleted`)
+        const response = await axios.delete(`http://localhost:5000/api/v1/ticket/${id}`)
+        console.log('Delete response:', response);
+        setTableData((prevTableData) => prevTableData.filter(ticket => ticket._id !==  id))
+        toast.success(`Ticket successfully removed`)
       } catch (error) {
         console.error(error);
+        toast.error('Failed to remove ticket')
       }
   }
 
@@ -135,7 +132,7 @@ const CustomerTicketTable = () => {
                     ></MenuButton>
                     <MenuList>
                       <MenuItem icon={<FaRegEdit />}>Edit</MenuItem>
-                      <MenuItem icon={<FaRegTrashCan />} onClick={handleDelete}>Remove</MenuItem>
+                      <MenuItem icon={<FaRegTrashCan />} onClick={ () => handleDelete(ticket._id)}>Remove</MenuItem>
                     </MenuList>
                   </Menu>
                 </Td>

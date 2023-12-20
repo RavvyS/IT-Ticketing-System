@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { toast } from "sonner";
 import Navbar from "../../components/common/Navbar";
 import CustomerTicketTable from "../../components/other/CustomerTicketTable";
 
@@ -56,19 +57,19 @@ const Dash = () => {
         "http://localhost:5000/api/v1/ticket/",
         createTicket
       );
-      console.log("POST Request Successful:", response);
+      toast.success("Ticket issued successfully");
       window.location.reload();
     } catch (error) {
       console.error("POST Request Failed:", error);
+      toast.success("Failed to issue ticket");
     }
   };
 
   const handleUrgency = () => {
-    if( createTicket.urgency === true)  {
-      "yes"
-    } else
-    "no"
-  }
+    if (createTicket.urgency === true) {
+      ("yes");
+    } else "no";
+  };
 
   return (
     <div>
