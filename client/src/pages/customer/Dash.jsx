@@ -58,6 +58,7 @@ const Dash = () => {
         createTicket
       );
       toast.success("Ticket issued successfully");
+      console.log(response);
       window.location.reload();
     } catch (error) {
       console.error("POST Request Failed:", error);

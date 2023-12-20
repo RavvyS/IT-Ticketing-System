@@ -14,10 +14,11 @@ interface Ticket {
 const ticketSchema = new Schema<Ticket>({
   subject: {
     type: String,
-    // required: true
+    required: true
   },
   description: {
     type: String,
+    required: true
   },
   urgency: {
     type: Boolean,
