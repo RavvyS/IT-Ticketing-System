@@ -27,8 +27,8 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure, 
-  Button
+  useDisclosure,
+  Button,
 } from "@chakra-ui/react";
 import {
   FaAnglesRight,
@@ -75,6 +75,7 @@ const CustomerTicketTable = () => {
   const [tableData, setTableData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [editSelected, setEditSelected] = useState(null);
 
   useEffect(() => {
     const fetchTicket = async () => {
@@ -82,7 +83,7 @@ const CustomerTicketTable = () => {
         const response = await axios.get(
           "http://localhost:5000/api/v1/ticket/"
         );
-        setTableData(response.data.response);
+        setTableData(response.data.response.reverse());
       } catch (error) {
         console.error(error);
         toast.error("Failed to load tickets");
@@ -111,6 +112,11 @@ const CustomerTicketTable = () => {
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const currentItems = tableData.slice(startIndex, endIndex);
+
+  const handleEdit = (ticket) => {
+    setEditSelected(ticket);
+    onOpen();
+  };
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -150,7 +156,7 @@ const CustomerTicketTable = () => {
                       icon={<FaEllipsisVertical />}
                     ></MenuButton>
                     <MenuList>
-                      <MenuItem icon={<FaRegEdit />} onClick={onOpen}>
+                      <MenuItem icon={<FaRegEdit />} onClick={ () => handleEdit(ticket)}>
                         Edit
                       </MenuItem>
                       <MenuItem
@@ -199,9 +205,12 @@ const CustomerTicketTable = () => {
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-          {tableData.map((ticket) => (
-              <h1 key={ticket._id}>{ticket.subject}</h1>
-            ))}
+          {editSelected && (
+              <>
+                <h1>{editSelected.subject}</h1>
+                <p>{editSelected.description}</p>
+              </>
+            )}
           </ModalBody>
 
           <ModalFooter>
