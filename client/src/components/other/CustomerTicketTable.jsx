@@ -23,6 +23,7 @@ import {
   MenuGroup,
   MenuOptionGroup,
   MenuDivider,
+  Badge, 
 } from "@chakra-ui/react";
 import {
   FaAnglesRight,
@@ -111,7 +112,7 @@ const CustomerTicketTable = () => {
               <Tr key={ticket._id}>
                 <Td>{ticket.subject}</Td>
                 <Td>{getStatusLabel(ticket.status)}</Td>
-                <Td>{ticket.urgency ? "Yes" : "No"}</Td>
+                <Td>{ticket.urgency ? <Badge colorScheme='red'>Yes</Badge> : <Badge>No</Badge>}</Td>
                 <Td>{ticket.created_at}</Td>
                 <Td>
                   <Menu>
