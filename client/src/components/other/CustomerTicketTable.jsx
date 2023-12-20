@@ -29,6 +29,12 @@ import {
   ModalCloseButton,
   useDisclosure,
   Button,
+  Input, 
+  Textarea, 
+  Editable,
+  EditableInput,
+  EditableTextarea,
+  EditablePreview,
 } from "@chakra-ui/react";
 import {
   FaAnglesRight,
@@ -202,13 +208,17 @@ const CustomerTicketTable = () => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Edit Ticket</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
           {editSelected && (
               <>
-                <h1>{editSelected.subject}</h1>
-                <p>{editSelected.description}</p>
+              <div className="my-5">
+              <Input value={editSelected.subject} />
+              </div>
+              <div className="my-5">
+              <Textarea value={editSelected.description} />
+              </div>
               </>
             )}
           </ModalBody>
