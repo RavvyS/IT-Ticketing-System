@@ -15,29 +15,59 @@ import {
   Box,
   HStack,
   IconButton,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
 } from "@chakra-ui/react";
-import { FaAnglesRight, FaAnglesLeft, FaEllipsisVertical } from "react-icons/fa6";
+import {
+  FaAnglesRight,
+  FaAnglesLeft,
+  FaEllipsisVertical,
+  FaRegTrashCan,
+} from "react-icons/fa6";
+import { FaRegEdit } from "react-icons/fa";
 
 const getStatusLabel = (status) => {
   switch (status) {
     case 0:
-      return <Tag size={"md"} variant={'solid'} colorScheme="yellow">Pending</Tag>;
+      return (
+        <Tag size={"md"} variant={"solid"} colorScheme="yellow">
+          Pending
+        </Tag>
+      );
     case 1:
-      return <Tag size={"md"} variant={'solid'} colorScheme="cyan">Working On</Tag>;
+      return (
+        <Tag size={"md"} variant={"solid"} colorScheme="cyan">
+          Working On
+        </Tag>
+      );
     case 2:
-      return <Tag size={"md"} variant={'solid'} colorScheme="green">Completed</Tag>;
+      return (
+        <Tag size={"md"} variant={"solid"} colorScheme="green">
+          Completed
+        </Tag>
+      );
     case 4:
-      return <Tag size={"md"} variant={'solid'} colorScheme="red">Canceled</Tag>;
+      return (
+        <Tag size={"md"} variant={"solid"} colorScheme="red">
+          Canceled
+        </Tag>
+      );
     default:
       return <Tag size={"md"}>Unknown Status</Tag>;
   }
 };
 
-const ITEMS_PER_PAGE = 10
+const ITEMS_PER_PAGE = 10;
 
 const CustomerTicketTable = () => {
   const [tableData, setTableData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1) 
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const fetchTicket = async () => {
@@ -53,14 +83,14 @@ const CustomerTicketTable = () => {
     fetchTicket();
   }, []);
 
-  const totalPages = Math.ceil(tableData.length/ITEMS_PER_PAGE)
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
-  const endIndex = startIndex + ITEMS_PER_PAGE
-  const currentItems = tableData.slice(startIndex, endIndex)
+  const totalPages = Math.ceil(tableData.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const currentItems = tableData.slice(startIndex, endIndex);
 
   const handlePageChange = (newPage) => {
-    setCurrentPage(newPage)
-  }
+    setCurrentPage(newPage);
+  };
 
   return (
     <>
@@ -84,7 +114,16 @@ const CustomerTicketTable = () => {
                 <Td>{ticket.urgency ? "Yes" : "No"}</Td>
                 <Td>{ticket.created_at}</Td>
                 <Td>
-                  <a href="#"><FaEllipsisVertical /></a>
+                  <Menu>
+                    <MenuButton
+                      as={IconButton}
+                      icon={<FaEllipsisVertical />}
+                    ></MenuButton>
+                    <MenuList>
+                      <MenuItem icon={<FaRegEdit />}>Edit</MenuItem>
+                      <MenuItem icon={<FaRegTrashCan />}>Remove</MenuItem>
+                    </MenuList>
+                  </Menu>
                 </Td>
               </Tr>
             ))}
@@ -93,7 +132,13 @@ const CustomerTicketTable = () => {
       </TableContainer>
 
       {/* Pagination */}
-      <Stack direction="row" justify="center" mt={4} spacing={4} className="m-5">
+      <Stack
+        direction="row"
+        justify="center"
+        mt={4}
+        spacing={4}
+        className="m-5"
+      >
         <HStack>
           <IconButton
             icon={<FaAnglesLeft />}
@@ -102,7 +147,7 @@ const CustomerTicketTable = () => {
           />
           <Box>{`${currentPage} of ${totalPages}`}</Box>
           <IconButton
-            icon={<FaAnglesRight/>}
+            icon={<FaAnglesRight />}
             onClick={() => handlePageChange(currentPage + 1)}
             isDisabled={currentPage === totalPages}
           />
