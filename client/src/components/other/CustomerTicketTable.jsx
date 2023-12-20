@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { toast } from 'sonner'
+import { toast } from "sonner";
 import {
   Table,
   Thead,
@@ -19,7 +19,16 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  Badge, 
+  Badge,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure, 
+  Button
 } from "@chakra-ui/react";
 import {
   FaAnglesRight,
@@ -65,6 +74,7 @@ const ITEMS_PER_PAGE = 10;
 const CustomerTicketTable = () => {
   const [tableData, setTableData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     const fetchTicket = async () => {
@@ -75,23 +85,27 @@ const CustomerTicketTable = () => {
         setTableData(response.data.response);
       } catch (error) {
         console.error(error);
-        toast.error('Failed to load tickets')
+        toast.error("Failed to load tickets");
       }
     };
     fetchTicket();
   }, []);
 
   const handleDelete = async (id) => {
-      try {
-        const response = await axios.delete(`http://localhost:5000/api/v1/ticket/${id}`)
-        console.log('Delete response:', response);
-        setTableData((prevTableData) => prevTableData.filter(ticket => ticket._id !==  id))
-        toast.success(`Ticket removed successfully`)
-      } catch (error) {
-        console.error(error);
-        toast.error('Failed to remove ticket')
-      }
-  }
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/v1/ticket/${id}`
+      );
+      console.log("Delete response:", response);
+      setTableData((prevTableData) =>
+        prevTableData.filter((ticket) => ticket._id !== id)
+      );
+      toast.success(`Ticket removed successfully`);
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to remove ticket");
+    }
+  };
 
   const totalPages = Math.ceil(tableData.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -121,7 +135,13 @@ const CustomerTicketTable = () => {
               <Tr key={ticket._id}>
                 <Td>{ticket.subject}</Td>
                 <Td>{getStatusLabel(ticket.status)}</Td>
-                <Td>{ticket.urgency ? <Badge colorScheme='red'>Yes</Badge> : <Badge>No</Badge>}</Td>
+                <Td>
+                  {ticket.urgency ? (
+                    <Badge colorScheme="red">Yes</Badge>
+                  ) : (
+                    <Badge>No</Badge>
+                  )}
+                </Td>
                 <Td>{ticket.created_at}</Td>
                 <Td>
                   <Menu>
@@ -130,8 +150,15 @@ const CustomerTicketTable = () => {
                       icon={<FaEllipsisVertical />}
                     ></MenuButton>
                     <MenuList>
-                      <MenuItem icon={<FaRegEdit />}>Edit</MenuItem>
-                      <MenuItem icon={<FaRegTrashCan />} onClick={ () => handleDelete(ticket._id)}>Remove</MenuItem>
+                      <MenuItem icon={<FaRegEdit />} onClick={onOpen}>
+                        Edit
+                      </MenuItem>
+                      <MenuItem
+                        icon={<FaRegTrashCan />}
+                        onClick={() => handleDelete(ticket._id)}
+                      >
+                        Remove
+                      </MenuItem>
                     </MenuList>
                   </Menu>
                 </Td>
@@ -164,6 +191,28 @@ const CustomerTicketTable = () => {
         </HStack>
       </Stack>
       {/* Pagination End */}
+
+      {/* Update/Edit Modal */}
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+          {tableData.map((ticket) => (
+              <h1 key={ticket._id}>{ticket.subject}</h1>
+            ))}
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      {/* Update/Edit Modal */}
     </>
   );
 };
