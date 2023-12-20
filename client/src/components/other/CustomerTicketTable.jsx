@@ -16,7 +16,7 @@ import {
   HStack,
   IconButton,
 } from "@chakra-ui/react";
-import { FaAnglesRight, FaAnglesLeft } from "react-icons/fa6";
+import { FaAnglesRight, FaAnglesLeft, FaEllipsisVertical } from "react-icons/fa6";
 
 const getStatusLabel = (status) => {
   switch (status) {
@@ -84,9 +84,7 @@ const CustomerTicketTable = () => {
                 <Td>{ticket.urgency ? "Yes" : "No"}</Td>
                 <Td>{ticket.created_at}</Td>
                 <Td>
-                  <Button colorScheme="teal" variant="outline">
-                    Edit
-                  </Button>
+                  <a href="#"><FaEllipsisVertical /></a>
                 </Td>
               </Tr>
             ))}
