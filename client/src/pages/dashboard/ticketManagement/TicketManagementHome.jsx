@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 
-const Home = () => {
+const TicketManagementHome = () => {
   return (
     <div>
       <SidebarLayout>
@@ -113,4 +113,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default TicketManagementHome;

@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Home from "./pages/dashboard/Home";
-import TicketManagement from "./pages/dashboard/ticketManagement/Home";
+import TicketManagementHome from "./pages/dashboard/ticketManagement/TicketManagementHome";
 import Dash from "./pages/customer/Dash";
 import DetailedView from "./pages/dashboard/ticketManagement/DetailedView";
 
@@ -18,7 +18,7 @@ function App() {
           <Route path="/dashboard/home" element={<Home />} />
           <Route
             path="/dashboard/ticketManagement"
-            element={<TicketManagement />}
+            element={<TicketManagementHome />}
           />
           <Route
             path="/dashboard/ticketManagement/detailedView"

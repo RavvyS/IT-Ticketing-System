@@ -5,6 +5,8 @@ Node.Js/Express.Js - JS
 
 Features:
 
+When Customer submits Ticket, assume they no nothing and just send the subject and desc of problem, Admins role would be to categorize the ticket into types, etc... and assign to an employee
+
 Ticket Creation and Submission:
 
     Simple and accessible form for users to submit tickets.
