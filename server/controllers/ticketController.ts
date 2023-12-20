@@ -35,6 +35,14 @@ const getUniqueTicket = async (req: any, res: any) => {
   }
 };
 
+const updateTicket = async (req: any, res:any) => {
+  try {
+    
+  } catch (error) {
+    
+  }
+}
+
 const deleteTicket = async (req: any, res: any) => {
   try {
     const { _id } = req.params;
