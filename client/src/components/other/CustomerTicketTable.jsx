@@ -64,7 +64,6 @@ const ITEMS_PER_PAGE = 10;
 
 const CustomerTicketTable = () => {
   const [tableData, setTableData] = useState([]);
-  const [deleteTicket, setDeleteTicket] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
