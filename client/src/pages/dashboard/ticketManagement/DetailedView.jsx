@@ -2,7 +2,19 @@ import React from "react";
 
 import SidebarLayout from "../../../components/Layouts/SidebarLayout";
 
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Tag, Avatar, Center } from "@chakra-ui/react";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  Tag,
+  Avatar,
+  Center,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Select,
+} from "@chakra-ui/react";
 import { FaAngleRight, FaHouse } from "react-icons/fa6";
 
 const DetailedView = () => {
@@ -44,12 +56,18 @@ const DetailedView = () => {
               alt="Sunset in the mountains"
             />
             <div class="px-6 py-4">
-              <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-              <p class="text-gray-700 text-base">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
-              </p>
+              <div class="font-bold text-xl mb-2">Ticket categorization</div>
+              <FormControl>
+                <FormLabel>Issue relation</FormLabel>
+                <Select placeholder="Select">
+                  <option>Networks</option>
+                  <option>Software</option>
+                  <option>OS</option>
+                  <option>Server</option>
+                  <option>Hardware</option>
+                  <option>Other</option>
+                </Select>
+              </FormControl>
             </div>
             <div class="px-6 pt-4 pb-2">
               <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
@@ -73,23 +91,26 @@ const DetailedView = () => {
             </div>
             <div class="px-6 py-4 text-center">
               <div class="font-bold text-xl mb-2">General details</div>
-              <h3>2023/11/10</h3><br></br>
-              <p className="underline">Windows not loading</p><br></br>
+              <h3>2023/11/10</h3>
+              <br></br>
+              <p className="underline">Windows not loading</p>
+              <br></br>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Voluptatibus quia, nulla! Maiores et perferendis eaque,
                 exercitationem praesentium nihil.
-              </p><br></br>
+              </p>
+              <br></br>
             </div>
             <div class="px-6 pt-4 pb-2 text-center">
               <span class="inline-block mr-2 mb-2">
-              <Tag>Urgent : Chill</Tag>
+                <Tag>Urgent : Chill</Tag>
               </span>
               <span class="inline-block mr-2 mb-2">
-              <Tag>Status</Tag>
+                <Tag>Status</Tag>
               </span>
               <span class="inline-block mr-2 mb-2">
-              <Tag>Company</Tag>
+                <Tag>Company</Tag>
               </span>
             </div>
           </div>
