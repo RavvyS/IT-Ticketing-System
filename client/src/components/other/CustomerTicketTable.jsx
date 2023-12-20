@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from 'sonner'
 import {
   Table,
   Thead,
@@ -9,7 +10,6 @@ import {
   Td,
   TableCaption,
   TableContainer,
-  Button,
   Tag,
   Stack,
   Box,
@@ -19,10 +19,6 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
   Badge, 
 } from "@chakra-ui/react";
 import {
@@ -68,6 +64,7 @@ const ITEMS_PER_PAGE = 10;
 
 const CustomerTicketTable = () => {
   const [tableData, setTableData] = useState([]);
+  const [deleteTicket, setDeleteTicket] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -83,6 +80,22 @@ const CustomerTicketTable = () => {
     };
     fetchTicket();
   }, []);
+
+  useEffect(() => {
+    const deleteTicket = async () => {
+      
+    }
+    deleteTicket()
+  }, [])
+
+  const handleDelete = async () => {
+      try {
+        const response = await axios.delete("http://localhost:5000/api/v1/ticket/:id", deleteTicket)
+        toast.success(`Ticket ${response.subject} successfully deleted`)
+      } catch (error) {
+        console.error(error);
+      }
+  }
 
   const totalPages = Math.ceil(tableData.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -122,7 +135,7 @@ const CustomerTicketTable = () => {
                     ></MenuButton>
                     <MenuList>
                       <MenuItem icon={<FaRegEdit />}>Edit</MenuItem>
-                      <MenuItem icon={<FaRegTrashCan />}>Remove</MenuItem>
+                      <MenuItem icon={<FaRegTrashCan />} onClick={handleDelete}>Remove</MenuItem>
                     </MenuList>
                   </Menu>
                 </Td>
