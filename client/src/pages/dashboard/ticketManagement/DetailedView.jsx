@@ -14,10 +14,35 @@ import {
   FormErrorMessage,
   FormHelperText,
   Select,
+  Textarea,
+  Step,
+  StepDescription,
+  StepIcon,
+  StepIndicator,
+  StepNumber,
+  StepSeparator,
+  StepStatus,
+  StepTitle,
+  Stepper,
+  useSteps,
+  Box,
+
 } from "@chakra-ui/react";
 import { FaAngleRight, FaHouse } from "react-icons/fa6";
+import { FaAndroid } from "react-icons/fa6";
+
+const steps = [
+  { title: "First", description: "Analyze Ticket" },
+  { title: "Second", description: "Categorize Ticket" },
+  { title: "Third", description: "Select State" },
+];
 
 const DetailedView = () => {
+  const { activeStep } = useSteps({
+    index: 1,
+    count: steps.length,
+  });
+
   return (
     <div>
       <SidebarLayout>
@@ -48,37 +73,27 @@ const DetailedView = () => {
         </div>
 
         {/* Cards */}
-        <div className="flex my-5 ">
+        <div className="flex my-5">
           <div class="max-w-sm rounded-xl overflow-hidden shadow-lg mt-20 mr-5">
-            <img
-              class="w-full"
-              src="https://v1.tailwindcss.com/img/card-top.jpg"
-              alt="Sunset in the mountains"
-            />
-            <div class="px-6 py-4">
-              <div class="font-bold text-xl mb-2">Ticket categorization</div>
+            <div class="px-6 py-4 text-center">
+              <div class="font-bold text-xl mb-5">Ticket categorization</div>
               <FormControl>
                 <FormLabel>Issue relation</FormLabel>
-                <Select placeholder="Select">
-                  <option>Networks</option>
+                <Select className="mb-5" placeholder="Select">
+                  <option>Networking</option>
                   <option>Software</option>
                   <option>OS</option>
                   <option>Server</option>
                   <option>Hardware</option>
                   <option>Other</option>
                 </Select>
+
+                <FormLabel>Diagnosis</FormLabel>
+                <Textarea
+                  size="mb"
+                  placeholder="Enter the high level diagnostic"
+                />
               </FormControl>
-            </div>
-            <div class="px-6 pt-4 pb-2">
-              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                #photography
-              </span>
-              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                #travel
-              </span>
-              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                #winter
-              </span>
             </div>
           </div>
 
@@ -117,11 +132,6 @@ const DetailedView = () => {
           {/* end */}
 
           <div class="max-w-sm rounded-xl overflow-hidden shadow-lg mt-20">
-            <img
-              class="w-full"
-              src="https://v1.tailwindcss.com/img/card-top.jpg"
-              alt="Sunset in the mountains"
-            />
             <div class="px-6 py-4">
               <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
               <p class="text-gray-700 text-base">
@@ -143,6 +153,27 @@ const DetailedView = () => {
             </div>
           </div>
         </div>
+
+        <Stepper index={activeStep} className="mt-20">
+          {steps.map((step, index) => (
+            <Step key={index}>
+              <StepIndicator>
+                <StepStatus
+                  complete={<StepNumber />}
+                  incomplete={<StepNumber />}
+                  active={<StepNumber />}
+                />
+              </StepIndicator>
+
+              <Box flexShrink="0">
+                <StepTitle>{step.title}</StepTitle>
+                <StepDescription>{step.description}</StepDescription>
+              </Box>
+
+              <StepSeparator />
+            </Step>
+          ))}
+        </Stepper>
       </SidebarLayout>
     </div>
   );
