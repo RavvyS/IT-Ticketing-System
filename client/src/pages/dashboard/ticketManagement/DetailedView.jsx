@@ -111,7 +111,7 @@ const DetailedView = () => {
               <p className="underline">Windows not loading</p>
               <br></br>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Lorem ipsum dolor sit amet, consectetur adipisicingpo elit.
                 Voluptatibus quia, nulla! Maiores et perferendis eaque,
                 exercitationem praesentium nihil.
               </p>
