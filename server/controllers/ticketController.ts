@@ -52,7 +52,7 @@ const editTicket = async (req: any, res: any) => {
       res.status(404).json({ error: "Ticket not found" });
       return;
     }
-    res.status(200).json({subject, description });
+    res.status(200).json({ subject, description });
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
@@ -72,4 +72,14 @@ const deleteTicket = async (req: any, res: any) => {
   }
 };
 
-export { getTicket, createTicket, getUniqueTicket, deleteTicket, editTicket };
+const updateStatus = async (req: any, res: any) => {
+  const { status } = req.body;
+  try {
+    const response = await ticketModel.replaceOne({ status: status });
+    res.status(200).json({ response });
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export { getTicket, createTicket, getUniqueTicket, deleteTicket, editTicket, updateStatus };
