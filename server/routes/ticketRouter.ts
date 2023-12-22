@@ -6,10 +6,11 @@ import {
   createTicket,
   getUniqueTicket,
   deleteTicket,
-  editTicket
+  editTicket,
+  updateStatus,
 } from "../controllers/ticketController";
 
 ticketRouter.route("/").get(getTicket).post(createTicket);
-ticketRouter.route("/:id").get(getUniqueTicket).delete(deleteTicket).patch(editTicket);
+ticketRouter.route("/:id").get(getUniqueTicket).delete(deleteTicket).patch(editTicket).patch(updateStatus);
 
 export default ticketRouter;
