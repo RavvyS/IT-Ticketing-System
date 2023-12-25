@@ -20,6 +20,7 @@ dotenv.config();
 
 // API Endpoints
 app.use("/api/v1/ticket", ticketRouter);
+app.use("api/v1/ticket/count", ticketRouter)
 app.use("/api/v1/user", userRouter);
 
 const port: any = process.env.PORT || 9000;

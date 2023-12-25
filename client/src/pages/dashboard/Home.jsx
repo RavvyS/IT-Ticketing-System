@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import axios from 'axios'
 
 import {
   Stat,
@@ -48,7 +49,7 @@ const Home = () => {
       <CardBody>
         <StatGroup>
           <Stat>
-            <StatLabel>Sent</StatLabel>
+            <StatLabel>Pending</StatLabel>
             <StatNumber>345,670</StatNumber>
             <StatHelpText>
               <StatArrow type="increase" />
@@ -57,7 +58,7 @@ const Home = () => {
           </Stat>
 
           <Stat>
-            <StatLabel>Sent</StatLabel>
+            <StatLabel>Working on</StatLabel>
             <StatNumber>345,670</StatNumber>
             <StatHelpText>
               <StatArrow type="increase" />
@@ -66,7 +67,7 @@ const Home = () => {
           </Stat>
 
           <Stat>
-            <StatLabel>Clicked</StatLabel>
+            <StatLabel>Canceled</StatLabel>
             <StatNumber>45</StatNumber>
             <StatHelpText>
               <StatArrow type="decrease" />
@@ -75,7 +76,7 @@ const Home = () => {
           </Stat>
 
           <Stat>
-            <StatLabel>Clicked</StatLabel>
+            <StatLabel>Completed</StatLabel>
             <StatNumber>45</StatNumber>
             <StatHelpText>
               <StatArrow type="decrease" />
@@ -112,6 +113,7 @@ const Home = () => {
             </Card>
           </div>
         </div>
+        
       </SidebarLayout>
     </div>
   );

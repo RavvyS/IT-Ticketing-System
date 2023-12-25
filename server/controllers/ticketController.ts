@@ -82,4 +82,21 @@ const updateStatus = async (req: any, res: any) => {
   }
 };
 
-export { getTicket, createTicket, getUniqueTicket, deleteTicket, editTicket, updateStatus };
+const getTicketsOnStatus = async (req: any, res: any) => {
+  try {
+    const response = await ticketModel.countDocuments({ status: 0 });
+    res.status(200).json({ response });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export {
+  getTicket,
+  createTicket,
+  getUniqueTicket,
+  deleteTicket,
+  editTicket,
+  updateStatus,
+  getTicketsOnStatus
+};
