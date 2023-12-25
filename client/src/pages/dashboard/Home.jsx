@@ -1,7 +1,8 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from 'axios'
 
+import { toast } from "sonner";
 import {
   Stat,
   StatLabel,
@@ -27,6 +28,7 @@ import {
 } from "@chakra-ui/react";
 
 const Home = () => {
+  // Pie-Chart
   const [ticketSummary, setTicketSummary] = useState({
     labels: ["Completed", "Pending"],
     datasets: [
@@ -41,6 +43,40 @@ const Home = () => {
     ],
   });
 
+  const [countPending, setPendingCount] = useState([])
+  const [countWorkingOn, setCountWorkingOn] = useState([])
+  const [countCancelled, setCountCancelled] = useState([])
+  const [countCompleted, setCountCompleted] = useState([])
+
+  const fetchTicketCount = async (status, setterFunction) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/v1/ticket/status/${status}`);
+      const data = response.data;
+      setterFunction(data.count)
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to load ticket counts');
+    }
+  }
+  
+  useEffect( () => {
+    fetchTicketCount(0, setPendingCount)
+  }, [])
+
+  useEffect( () => {
+    fetchTicketCount(1, setCountWorkingOn)
+  }, [])
+
+  useEffect( () => {
+    fetchTicketCount(2, setCountCompleted)
+  }, [])
+
+  useEffect( () => {
+    fetchTicketCount(3, setCountCancelled)
+  }, [])
+
+ 
+
   return (
     <div>
       <SidebarLayout>
@@ -50,7 +86,7 @@ const Home = () => {
         <StatGroup>
           <Stat>
             <StatLabel>Pending</StatLabel>
-            <StatNumber>345,670</StatNumber>
+            <StatNumber>{countPending}</StatNumber>
             <StatHelpText>
               <StatArrow type="increase" />
               23.36%
@@ -59,7 +95,7 @@ const Home = () => {
 
           <Stat>
             <StatLabel>Working on</StatLabel>
-            <StatNumber>345,670</StatNumber>
+            <StatNumber>{countWorkingOn}</StatNumber>
             <StatHelpText>
               <StatArrow type="increase" />
               69.36%
@@ -67,8 +103,8 @@ const Home = () => {
           </Stat>
 
           <Stat>
-            <StatLabel>Canceled</StatLabel>
-            <StatNumber>45</StatNumber>
+            <StatLabel>Cancelled</StatLabel>
+            <StatNumber>{countCancelled}</StatNumber>
             <StatHelpText>
               <StatArrow type="decrease" />
               9.05%
@@ -77,7 +113,7 @@ const Home = () => {
 
           <Stat>
             <StatLabel>Completed</StatLabel>
-            <StatNumber>45</StatNumber>
+            <StatNumber>{countCompleted}</StatNumber>
             <StatHelpText>
               <StatArrow type="decrease" />
               9.05%

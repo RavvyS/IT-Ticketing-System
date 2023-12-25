@@ -83,9 +83,10 @@ const updateStatus = async (req: any, res: any) => {
 };
 
 const getTicketsOnStatus = async (req: any, res: any) => {
+  const { status } = req.params
   try {
-    const response = await ticketModel.countDocuments({ status: 0 });
-    res.status(200).json({ response });
+    const response = await ticketModel.countDocuments({ status: status });
+    res.status(200).json({ count: response });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }

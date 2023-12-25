@@ -19,6 +19,6 @@ ticketRouter
   .patch(editTicket)
   .patch(updateStatus);
 
-ticketRouter.route("/").get(getTicketsOnStatus);
+ticketRouter.route("/status/:status").get(getTicketsOnStatus);
 
 export default ticketRouter;
