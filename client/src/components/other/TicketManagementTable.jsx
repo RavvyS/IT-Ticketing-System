@@ -84,6 +84,8 @@ const TicketManagementTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [editSelected, setEditSelected] = useState(null);
+  // Todo
+  const [email, setEmail] = useState("")
 
   useEffect(() => {
     const fetchTicket = async () => {
@@ -99,6 +101,21 @@ const TicketManagementTable = () => {
     };
     fetchTicket();
   }, []);
+
+  // Todo
+  useEffect(() => {
+    const fetchEmail = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/v1/user/"
+        );
+        setEmail(response)
+      } catch (error) {
+        console.log(error);
+        toast.error("Failed to load email")
+      }
+    }
+  })
 
   const handleDelete = async (id) => {
     try {
