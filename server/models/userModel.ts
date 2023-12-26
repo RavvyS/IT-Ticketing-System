@@ -6,8 +6,6 @@ interface User {
   _id(_id: any): unknown;
   email: string;
   password: string;
-  company: string;
-  no_employees: string;
 }
 
 // Extend the Mongoose Model interface with custom static methods
@@ -26,12 +24,6 @@ const userSchema = new Schema<User>({
     type: String,
     required: true,
   },
-  company: {
-    type: String,
-  },
-  no_employees: {
-    type: String,
-  }
 });
 
 // static signup method

@@ -31,13 +31,12 @@ const login = async (req: any, res: any) => {
 };
 
 const signUp = async (req: any, res: any) => {
-  const { email, password, company, no_employees } = req.body;
+  const { email, password } = req.body;
   try {
     const user = await userModel.signup(email, password);
-    const userDetails = await userModel.create(company, no_employees)
     // Create a token
     const token = createToken(user._id);
-    res.status(201).json({ email, token }, userDetails);
+    res.status(201).json({ email, token });
   } catch (error) {
     res.status(400).json(console.log(error));
   }
