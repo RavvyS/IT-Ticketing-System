@@ -299,7 +299,7 @@ const Landing = () => {
                 </div>
                 <blockquote className="mt-8 text-lg text-gray-500">
                   "This is a no-brainer if you want to take your business to the
-                  next level. If you are looking for the ultimate toolset, this
+                  next level. If you are looking for the ultimate IT toolset, this
                   is it!"
                 </blockquote>
               </div>
