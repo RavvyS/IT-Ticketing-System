@@ -8,6 +8,15 @@ const createToken = (_id: any) => {
   });
 };
 
+const getUsers = async (req: any, res:any) => {
+  try {
+    const response = await userModel.find()
+    res.status(200).json(response)
+  } catch (error) {
+    res.status(500).json('error')
+  }
+}
+
 const login = async (req: any, res: any) => {
   const { email, password } = req.body;
   try {
@@ -22,16 +31,16 @@ const login = async (req: any, res: any) => {
 };
 
 const signUp = async (req: any, res: any) => {
-  const { email, password } = req.body;
+  const { email, password, company, no_employees } = req.body;
   try {
     const user = await userModel.signup(email, password);
-
+    const userDetails = await userModel.create(company, no_employees)
     // Create a token
     const token = createToken(user._id);
-    res.status(201).json({ email, token });
+    res.status(201).json({ email, token }, userDetails);
   } catch (error) {
     res.status(400).json(console.log(error));
   }
 };
 
-export { signUp, login };
+export { signUp, login, getUsers };
