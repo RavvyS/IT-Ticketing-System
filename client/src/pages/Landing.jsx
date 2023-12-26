@@ -288,13 +288,13 @@ const Landing = () => {
                 <div className="flex items-center justify-center">
                   <div className="w-16 h-16 mr-4 overflow-hidden bg-gray-200 rounded-full">
                     <img
-                      src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1700&amp;q=80"
+                      src="https://scontent.fcmb3-2.fna.fbcdn.net/v/t39.30808-6/301961577_2141691896003530_3869686037702784773_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeGRKxN0FutEin61ZY24j3Mb-Rc2GFbBWPT5FzYYVsFY9Iy8iWhpOrnVo-FdSUvIpGBuPSudNDG62dDuEz3n76HQ&_nc_ohc=ql-3XHz48tcAX9jYGs7&_nc_zt=23&_nc_ht=scontent.fcmb3-2.fna&oh=00_AfA4UhdmrwWQVc5mX0-4FGT3CzalrMgmmx0g2IaDAs973w&oe=6590540E&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1700&amp;q=80"
                       className="object-cover w-full h-full"
                     />
                   </div>
                   <div className="flex flex-col items-start justify-center">
-                    <h4 className="font-bold text-gray-800">John Doe</h4>
-                    <p className="text-gray-600">CEO of Something</p>
+                    <h4 className="font-bold text-gray-800">Pithuka Mathnapriya</h4>
+                    <p className="text-gray-600">CTO of NSBM</p>
                   </div>
                 </div>
                 <blockquote className="mt-8 text-lg text-gray-500">
