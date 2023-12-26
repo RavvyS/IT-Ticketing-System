@@ -21,7 +21,7 @@ function App() {
             element={<TicketManagementHome />}
           />
           <Route
-            path="/dashboard/ticketManagement/detailedView"
+            path="/dashboard/ticketManagement/detailedView/:id"
             element={<DetailedView/>}
           ></Route>
         </Routes>

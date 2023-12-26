@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios'
+import { useParams } from 'react-router-dom'
+
+import { toast } from "sonner";
 
 import SidebarLayout from "../../../components/Layouts/SidebarLayout";
 
@@ -33,7 +37,54 @@ import {
 import { FaAngleRight, FaHouse } from "react-icons/fa6";
 import { FaAndroid } from "react-icons/fa6";
 
-const DetailedView = () => {
+const DetailedView = (props) => {
+  const { id } = useParams();
+  const [details, setDetails] = useState({})
+
+  useEffect(() => {
+    const fetchDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/v1/ticket/${id}`)
+        setDetails(response.data.response)
+      } catch (error) {
+        console.error(error);
+        toast.error("failed to load details")
+      }
+    }
+    fetchDetails()
+  }, [id])
+
+  const getStatusLabel = (status) => {
+    switch (status) {
+      case 0:
+        return (
+          <Tag size={"md"} variant={"solid"} colorScheme="yellow">
+            Pending
+          </Tag>
+        );
+      case 1:
+        return (
+          <Tag size={"md"} variant={"solid"} colorScheme="cyan">
+            Working On
+          </Tag>
+        );
+      case 2:
+        return (
+          <Tag size={"md"} variant={"solid"} colorScheme="green">
+            Completed
+          </Tag>
+        );
+      case 4:
+        return (
+          <Tag size={"md"} variant={"solid"} colorScheme="red">
+            Canceled
+          </Tag>
+        );
+      default:
+        return <Tag size={"md"}>Unknown Status</Tag>;
+    }
+  };
+
   return (
     <div>
       <SidebarLayout>
@@ -65,26 +116,28 @@ const DetailedView = () => {
 
         <Card className="mt-10">
           <CardBody>
-            <div class="px-6 py-4 text-center">
-              <h3>2023/11/10</h3>
+            <div className="px-6 py-4 text-center">
+              <h3>{details.created_at}</h3>
               <br></br>
-              <p className="underline">Windows not loading</p>
+              <p className="underline">{details.subject}</p>
               <br></br>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicingpo elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
+                {details.description}
               </p>
               <br></br>
             </div>
-            <div class="px-6 pt-4 pb-2 text-center">
-              <span class="inline-block mr-2 mb-2">
-                <Tag>Urgent : Chill</Tag>
+            <div className="px-6 pt-4 pb-2 text-center">
+              <span className="inline-block mr-2 mb-2">
+              {details.urgency ? (
+                    <Tag colorScheme="red">Urgent</Tag>
+                  ) : (
+                    <Tag colorScheme="teal">Chill</Tag>
+                  )}
               </span>
-              <span class="inline-block mr-2 mb-2">
-                <Tag>Status</Tag>
+              <span className="inline-block mr-2 mb-2">
+                {getStatusLabel(details.status)}
               </span>
-              <span class="inline-block mr-2 mb-2">
+              <span className="inline-block mr-2 mb-2">
                 <Tag>Company</Tag>
               </span>
             </div>

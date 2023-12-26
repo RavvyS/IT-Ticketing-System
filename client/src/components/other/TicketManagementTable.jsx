@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import { toast } from "sonner";
 import {
@@ -80,12 +81,13 @@ const getStatusLabel = (status) => {
 const ITEMS_PER_PAGE = 10;
 
 const TicketManagementTable = () => {
+
   const [tableData, setTableData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [editSelected, setEditSelected] = useState(null);
   // Todo
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     const fetchTicket = async () => {
@@ -106,16 +108,14 @@ const TicketManagementTable = () => {
   useEffect(() => {
     const fetchEmail = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/v1/user/"
-        );
-        setEmail(response)
+        const response = await axios.get("http://localhost:5000/api/v1/user/");
+        setEmail(response);
       } catch (error) {
         console.log(error);
-        toast.error("Failed to load email")
+        toast.error("Failed to load email");
       }
-    }
-  })
+    };
+  });
 
   const handleDelete = async (id) => {
     try {
@@ -185,9 +185,9 @@ const TicketManagementTable = () => {
                 </Td>
                 <Td>{ticket.created_at}</Td>
                 <Td>
-                  <a href="/dashboard/ticketManagement/detailedView">
-                    <FaArrowRightToBracket />
-                  </a>
+                    <Link to={`/dashboard/ticketManagement/detailedView/${ticket._id}`}>
+                      <FaArrowRightToBracket />
+                    </Link>
                 </Td>
               </Tr>
             ))}
