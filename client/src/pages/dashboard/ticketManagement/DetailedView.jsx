@@ -94,18 +94,18 @@ const DetailedView = (props) => {
             separator={<FaAngleRight color="gray.500" />}
           >
             <BreadcrumbItem>
-              <BreadcrumbLink href="#">
+              <BreadcrumbLink href="/dashboard/Home">
                 <FaHouse />
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/dashboard/home">Dashboard</BreadcrumbLink>
+              <BreadcrumbLink href="/dashboard/Home">Dashboard</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem>
-              <BreadcrumbLink href="#">Ticket Management</BreadcrumbLink>
+              <BreadcrumbLink href="/dashboard/ticketManagement">Ticket Management</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem>
-              <BreadcrumbLink href="#">Detailed View</BreadcrumbLink>
+              <BreadcrumbLink href="">Detailed View</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
         </div>

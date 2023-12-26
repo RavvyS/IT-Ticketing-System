@@ -32,15 +32,15 @@ const TicketManagementHome = () => {
             separator={<FaAngleRight color="gray.500" />}
           >
             <BreadcrumbItem>
-              <BreadcrumbLink href="#">
+              <BreadcrumbLink href="/dashboard/Home">
                 <FaHouse />
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem>
-              <BreadcrumbLink href="#">Dashboard</BreadcrumbLink>
+              <BreadcrumbLink href="/dashboard/Home">Dashboard</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem>
-              <BreadcrumbLink href="#">Ticket Management</BreadcrumbLink>
+              <BreadcrumbLink href="">Ticket Management</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
         </div>
