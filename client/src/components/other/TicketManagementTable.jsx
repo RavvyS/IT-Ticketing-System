@@ -218,35 +218,6 @@ const TicketManagementTable = () => {
         </HStack>
       </Stack>
       {/* Pagination End */}
-
-      {/* Update/Edit Modal */}
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Edit Ticket</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            {editSelected && (
-              <>
-                <div className="my-5">
-                  <Input value={editSelected.subject} />
-                </div>
-                <div className="my-5">
-                  <Textarea value={editSelected.description} />
-                </div>
-              </>
-            )}
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant="ghost">Secondary Action</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-      {/* Update/Edit Modal */}
     </>
   );
 };
