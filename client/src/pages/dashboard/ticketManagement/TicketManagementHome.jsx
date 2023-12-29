@@ -1,26 +1,21 @@
 import React from "react";
+
 import SidebarLayout from "../../../components/Layouts/SidebarLayout";
 import TicketManagementTable from "../../../components/other/TicketManagementTable";
 
 import { FaAngleRight, FaHouse } from "react-icons/fa6";
-import { FaSearch } from "react-icons/fa";
 import { TbReportAnalytics } from "react-icons/tb";
 import { IoMdAddCircleOutline } from "react-icons/io";
-
 import { Tooltip } from "react-tooltip";
-
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/react";
-import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
-import { Select } from "@chakra-ui/react";
-import { Flex } from "@chakra-ui/react";
 import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  Flex,
+  Select,
+  Input,
+  Button,
 } from "@chakra-ui/react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 
 const TicketManagementHome = () => {
   return (
