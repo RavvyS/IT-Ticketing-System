@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import { toast } from "sonner";
 
@@ -63,8 +63,8 @@ const DetailedView = () => {
         `http://localhost:5000/api/v1/ticket/${id}/updateStatus`,
         { status: selectedState }
       );
-
       setSelectedState(response.data.response);
+      window.location.reload();
       toast.success("State updated successfully");
     } catch (error) {
       console.error(error);
@@ -92,7 +92,7 @@ const DetailedView = () => {
             Completed
           </Tag>
         );
-      case 4:
+      case 3:
         return (
           <Tag size={"md"} variant={"solid"} colorScheme="red">
             Canceled
@@ -164,7 +164,12 @@ const DetailedView = () => {
 
         <Card>
           <CardBody>
-          <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit();
+              }}
+            >
               <FormControl>
                 <FormLabel>Change state of ticket</FormLabel>
                 <Select
@@ -177,9 +182,11 @@ const DetailedView = () => {
                   <option value={3}>Canceled</option>
                   <option value={0}>Pending</option>
                 </Select>
-                <Button type="submit" className="mt-3" colorScheme="teal">
+                <Link to="/dashboard/ticketManagement">
+                <Button type="submit" onClick={handleSubmit} className="mt-3" colorScheme="teal">
                   Change
                 </Button>
+                </Link>
               </FormControl>
             </form>
           </CardBody>

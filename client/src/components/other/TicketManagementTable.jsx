@@ -67,7 +67,7 @@ const getStatusLabel = (status) => {
           Completed
         </Tag>
       );
-    case 4:
+    case 3:
       return (
         <Tag size={"md"} variant={"solid"} colorScheme="red">
           Canceled
