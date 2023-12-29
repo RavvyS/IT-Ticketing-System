@@ -73,9 +73,14 @@ const deleteTicket = async (req: any, res: any) => {
 };
 
 const updateStatus = async (req: any, res: any) => {
+  const { id } = req.params;
   const { status } = req.body;
   try {
-    const response = await ticketModel.replaceOne({ status: status });
+    const response = await ticketModel.findOneAndUpdate(
+      { _id: id },
+      { status: status },
+      { new: true }
+    );
     res.status(200).json({ response });
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
@@ -83,7 +88,7 @@ const updateStatus = async (req: any, res: any) => {
 };
 
 const getTicketsOnStatus = async (req: any, res: any) => {
-  const { status } = req.params
+  const { status } = req.params;
   try {
     const response = await ticketModel.countDocuments({ status: status });
     res.status(200).json({ count: response });
@@ -99,5 +104,5 @@ export {
   deleteTicket,
   editTicket,
   updateStatus,
-  getTicketsOnStatus
+  getTicketsOnStatus,
 };

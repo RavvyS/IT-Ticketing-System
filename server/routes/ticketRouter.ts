@@ -16,9 +16,8 @@ ticketRouter
   .route("/:id")
   .get(getUniqueTicket)
   .delete(deleteTicket)
-  .patch(editTicket)
-  .patch(updateStatus);
-
+  .patch(editTicket);
+ticketRouter.route("/:id/updateStatus").patch(updateStatus);
 ticketRouter.route("/status/:status").get(getTicketsOnStatus);
 
 export default ticketRouter;
