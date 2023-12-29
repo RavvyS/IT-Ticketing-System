@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useQuery } from "react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -78,14 +79,9 @@ const getStatusLabel = (status) => {
   }
 };
 
-const ITEMS_PER_PAGE = 10;
-
 const TicketManagementTable = () => {
 
   const [tableData, setTableData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [editSelected, setEditSelected] = useState(null);
   // Todo
   const [email, setEmail] = useState("");
 
@@ -117,35 +113,6 @@ const TicketManagementTable = () => {
     };
   });
 
-  const handleDelete = async (id) => {
-    try {
-      const response = await axios.delete(
-        `http://localhost:5000/api/v1/ticket/${id}`
-      );
-      console.log("Delete response:", response);
-      setTableData((prevTableData) =>
-        prevTableData.filter((ticket) => ticket._id !== id)
-      );
-      toast.success(`Ticket removed successfully`);
-    } catch (error) {
-      console.error(error);
-      toast.error("Failed to remove ticket");
-    }
-  };
-
-  const totalPages = Math.ceil(tableData.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
-  const currentItems = tableData.slice(startIndex, endIndex);
-
-  const handleEdit = (ticket) => {
-    setEditSelected(ticket);
-    onOpen();
-  };
-
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
-  };
 
   const parseReadableId = (id) => {
     // Your custom parsing logic here
@@ -195,29 +162,6 @@ const TicketManagementTable = () => {
         </Table>
       </TableContainer>
 
-      {/* Pagination */}
-      <Stack
-        direction="row"
-        justify="center"
-        mt={4}
-        spacing={4}
-        className="m-5"
-      >
-        <HStack>
-          <IconButton
-            icon={<FaAnglesLeft />}
-            onClick={() => handlePageChange(currentPage - 1)}
-            isDisabled={currentPage === 1}
-          />
-          <Box>{`${currentPage} of ${totalPages}`}</Box>
-          <IconButton
-            icon={<FaAnglesRight />}
-            onClick={() => handlePageChange(currentPage + 1)}
-            isDisabled={currentPage === totalPages}
-          />
-        </HStack>
-      </Stack>
-      {/* Pagination End */}
     </>
   );
 };
