@@ -20,29 +20,14 @@ Ticket Tracking and Management:
     Status tracking (open, in-progress, resolved) to monitor the lifecycle of a ticket.
     Assignment of tickets to specific IT staff or teams.
 
-Automated Ticket Routing:
-
-    Automatic assignment of tickets to the appropriate support personnel based on predefined rules or workload balancing.
-
-Prioritization and SLA Management:
+Prioritization Management:
 
     Ability to set priority levels for tickets.
-    Service Level Agreement (SLA) tracking to ensure timely resolution based on predefined standards.
-
-Communication and Collaboration Tools:
-
-    Internal messaging system for communication between IT staff.
-    Notifications and updates to keep users informed about the status of their tickets.
 
 Reporting and Analytics:
 
     Customizable reporting tools to analyze ticket trends, response times, and other key performance indicators.
     Insights into common issues to guide proactive problem-solving.
-
-Integration with Other Systems:
-
-    Integration with email systems for ticket creation and updates via email.
-    Integration with monitoring tools to automatically generate tickets for identified issues.
 
 Security and Access Controls:
 
