@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import SidebarLayout from "../../../components/Layouts/SidebarLayout";
 import TicketManagementTable from "../../../components/other/TicketManagementTable";
@@ -15,9 +15,22 @@ import {
   Select,
   Input,
   Button,
+  Radio,
+  RadioGroup,
 } from "@chakra-ui/react";
 
 const TicketManagementHome = () => {
+  const [radioValue, setRadioValue] = useState(0);
+
+
+  const radioUrgent = (event) => {
+    if (event === 0) {
+      console.log("nice");
+    } else {
+      console.log(event);
+    }
+  }
+
   return (
     <div>
       <SidebarLayout>
@@ -76,14 +89,7 @@ const TicketManagementHome = () => {
               placeholder="Search"
               rounded="md"
             />
-            <Select
-              flex="1"
-              mr="2"
-              variant="outline"
-              size="sm"
-              placeholder="Filter"
-              rounded="md"
-            />
+
             <Select
               flex="1"
               mr="2"
@@ -94,11 +100,25 @@ const TicketManagementHome = () => {
             />
             <Select
               flex="1"
+              mr="2"
               variant="outline"
               size="sm"
               placeholder="Choose"
               rounded="md"
             />
+
+            <Radio
+              onChange={radioUrgent}
+              value={radioValue}
+              flex="1"
+              ml="2"
+              variant="outline"
+              size="sm"
+              placeholder="Filter"
+              rounded="md"
+            >
+              Urgent ?
+            </Radio>
           </Flex>
         </div>
 
