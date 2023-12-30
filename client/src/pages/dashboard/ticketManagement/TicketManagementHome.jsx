@@ -25,7 +25,7 @@ const TicketManagementHome = () => {
 
   const radioUrgent = (event) => {
     if (event === 0) {
-      console.log("nice");
+      console.log(event);
     } else {
       console.log(event);
     }
