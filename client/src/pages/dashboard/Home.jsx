@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -19,13 +18,6 @@ import SidebarLayout from "../../components/Layouts/SidebarLayout";
 import {
   Card,
   CardBody,
-  CardHeader,
-  CardFooter,
-  Button,
-  Image,
-  Text,
-  Stack,
-  Heading,
 } from "@chakra-ui/react";
 
 const Home = () => {
