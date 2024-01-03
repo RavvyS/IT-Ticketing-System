@@ -5,7 +5,7 @@ import TicketManagementHome from "./pages/dashboard/ticketManagement/TicketManag
 import Dash from "./pages/customer/Dash";
 import DetailedView from "./pages/dashboard/ticketManagement/DetailedView";
 
-import { Toaster, toast } from "sonner";
+import { Toaster } from "sonner";
 
 function App() {
   return (
