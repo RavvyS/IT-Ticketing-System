@@ -1,4 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Login from "./pages/auth/Login";
+import Signup from "./pages/auth/Signup";
 import Landing from "./pages/Landing";
 import Home from "./pages/dashboard/Home";
 import TicketManagementHome from "./pages/dashboard/ticketManagement/TicketManagementHome";
@@ -14,6 +17,8 @@ function App() {
         <Toaster richColors />
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/customer/" element={<Dash />} />
           <Route path="/dashboard/home" element={<Home />} />
           <Route
@@ -22,7 +27,7 @@ function App() {
           />
           <Route
             path="/dashboard/ticketManagement/detailedView/:id"
-            element={<DetailedView/>}
+            element={<DetailedView />}
           ></Route>
         </Routes>
       </BrowserRouter>
