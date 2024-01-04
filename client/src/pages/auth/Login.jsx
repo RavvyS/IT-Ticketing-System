@@ -12,7 +12,7 @@ const Login = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <h3>Log-in</h3>
+        <h3 className="">Log-in</h3>
 
         <label>Email</label>
         <input
