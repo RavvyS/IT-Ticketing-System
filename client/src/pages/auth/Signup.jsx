@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSignup } from "../../hooks/useSignup";
 import AuthNavbar from "../../components/common/AuthNavbar";
 
+import validator from "validator";
 import { toast } from "sonner";
 import {
   Card,
@@ -23,6 +24,19 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
+    if (!validator.isEmail(email)) {
+      toast.error("Please enter a valid E-mail address.");
+      return;
+    }
+    if (!validator.isStrongPassword(password)) {
+      toast.error("Password should contain: Uppercase letters, Numbers & Symbols");
+      return;
+    }
 
     await signup(email, password);
   };
