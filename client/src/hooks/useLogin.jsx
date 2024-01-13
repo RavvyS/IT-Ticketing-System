@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
-
-
 import { toast } from "sonner";
 
 export const useLogin = () => {
@@ -24,11 +22,14 @@ export const useLogin = () => {
 
       if (!response.ok) {
         // Not working
-        if (json.error === "Incorrect Email") {
-          toast.error("Email & Password does not match");
-        }
-        if (json.error === "Incorrect Password") {
-          toast.error("Email & Password does not match");
+        if (json.error === "All fields must be filled") {
+          setError("Please fill in all fields.");
+        } else if (json.error === "Incorrect Email") {
+          setError("Email does not exist.");
+        } else if (json.error === "Incorrect Password") {
+          setError("Incorrect password.");
+        } else {
+          setError("Login failed. Please try again.");
         }
         return;
       }

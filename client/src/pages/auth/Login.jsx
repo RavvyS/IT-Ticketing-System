@@ -21,7 +21,7 @@ import {
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, error, isLoading } = useLogin();
+  const { login, isLoading } = useLogin();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,7 +77,6 @@ const Login = () => {
               >
                 Log-In
               </Button>
-              {error && <div className="">{error}</div>}
             </CardBody>
 
             <Box position="relative" padding="3">
