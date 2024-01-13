@@ -76,7 +76,9 @@ const Signup = () => {
             </Box>
 
             <CardFooter className="flex justify-center">
-              <Button colorScheme="gray">Log-In</Button>
+              <a href="/login">
+                <Button colorScheme="gray">Log-In</Button>
+              </a>
             </CardFooter>
           </Card>
         </form>
