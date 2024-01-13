@@ -31,6 +31,7 @@ const Login = () => {
       return;
     }
     await login(email, password);
+    toast.success("Log-in successful")
     
   };
 
