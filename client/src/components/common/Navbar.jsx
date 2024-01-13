@@ -5,10 +5,17 @@ import {
   MenuItem,
   MenuGroup,
   MenuDivider,
-  Avatar
+  Avatar,
 } from "@chakra-ui/react";
+import useLogout from "../../hooks/useLogout";
 
 const Navbar = () => {
+  const { logout } = useLogout();
+
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <div>
       <section className="w-full px-8 text-gray-700 bg-white">
@@ -59,6 +66,7 @@ const Navbar = () => {
                 <MenuGroup title="Profile">
                   <MenuItem>My Account</MenuItem>
                   <MenuItem>Payments </MenuItem>
+                  <MenuItem onClick={handleLogout}>Log-out</MenuItem>
                 </MenuGroup>
                 <MenuDivider />
                 <MenuGroup title="Help">
