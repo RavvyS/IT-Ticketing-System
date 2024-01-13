@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useLogin } from "../../hooks/useLogin";
 
 import AuthNavbar from "../../components/common/AuthNavbar";
 
+import { toast } from "sonner";
 import {
   Card,
   CardBody,
@@ -19,10 +21,13 @@ import {
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login, error, isLoading } = useLogin();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+
+    await login(email, password);
+    
   };
 
   return (
@@ -63,12 +68,12 @@ const Login = () => {
               <Button
                 colorScheme="purple"
                 className="w-full"
-                disabled={""}
+                disabled={isLoading}
                 type="submit"
               >
                 Log-In
               </Button>
-              {/* {error && <div className="">{error}</div>} */}
+              {error && <div className="">{error}</div>}
             </CardBody>
 
             <Box position="relative" padding="3">

@@ -32,10 +32,6 @@ import {
   Button,
   Input,
   Textarea,
-  Editable,
-  EditableInput,
-  EditableTextarea,
-  EditablePreview,
 } from "@chakra-ui/react";
 import {
   FaAnglesRight,

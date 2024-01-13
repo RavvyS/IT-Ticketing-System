@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSignup } from "../../hooks/useSignup";
 import AuthNavbar from "../../components/common/AuthNavbar";
 
+import { toast } from "sonner";
 import {
   Card,
   CardBody,
@@ -65,7 +66,7 @@ const Signup = () => {
               >
                 Sign-up
               </Button>
-              {error && <div className="">{error}</div>}
+              {error && toast.error(`Signup failed: ${error.message}`)}
             </CardBody>
 
             <Box position="relative" padding="3">
