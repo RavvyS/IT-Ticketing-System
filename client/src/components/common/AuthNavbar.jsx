@@ -12,7 +12,7 @@ const AuthNavbar = () => {
         <div className="flex flex-col items-center py-5">
           <nav className="items-center mb-5">
             <a
-              href="#_"
+              href="/"
               className="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900"
             >
               Home
