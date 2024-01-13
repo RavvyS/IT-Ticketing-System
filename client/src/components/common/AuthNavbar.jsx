@@ -1,10 +1,14 @@
 import useLogout from "../../hooks/useLogout";
 
+import { toast } from "sonner";
+
 const AuthNavbar = () => {
   const { logout } = useLogout();
 
   const handleLogout = () => {
+    toast.info("Successfully logged-out")
     logout();
+    
   };
   return (
     <div className="mx-auto">
