@@ -1,6 +1,8 @@
 import express from "express";
 const ticketRouter = express.Router();
 
+import { requireAuth } from "../middleware/requireAuth";
+
 import {
   getTicket,
   createTicket,
@@ -10,6 +12,8 @@ import {
   updateStatus,
   getTicketsOnStatus,
 } from "../controllers/ticketController";
+
+ticketRouter.use(requireAuth)
 
 ticketRouter.route("/").get(getTicket).post(createTicket);
 ticketRouter
