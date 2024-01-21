@@ -1,6 +1,15 @@
 import { FaArrowRightToBracket } from "react-icons/fa6";
+import { useAuthContext } from "../hooks/useAuthContext";
+import useLogout from "../hooks/useLogout";
 
 const Landing = () => {
+  const { user } = useAuthContext();
+  const { logout } = useLogout();
+
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <>
       <section className="w-full px-8 text-gray-700 bg-white">
@@ -42,20 +51,33 @@ const Landing = () => {
             </nav>
           </div>
 
-          <div className="inline-flex items-center ml-5 space-x-6 lg:justify-end">
-            <a
-              href="dashboard/home"
-              className="text-base font-medium leading-6 text-gray-600 whitespace-no-wrap transition duration-150 ease-in-out hover:text-gray-900"
-            >
-              Sign in
-            </a>
-            <a
-              href="/signup"
-              className="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-            >
-              Sign up
-            </a>
-          </div>
+          {user && (
+            <div className="inline-flex items-center ml-5 space-x-6 lg:justify-end">
+              <span>{user.email}</span>
+              <button
+                className="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+                onClick={handleLogout}
+              >
+                Log-Out
+              </button>
+            </div>
+          )}
+          {!user && (
+            <div className="inline-flex items-center ml-5 space-x-6 lg:justify-end">
+              <a
+                href="dashboard/home"
+                className="text-base font-medium leading-6 text-gray-600 whitespace-no-wrap transition duration-150 ease-in-out hover:text-gray-900"
+              >
+                Sign in
+              </a>
+              <a
+                href="/signup"
+                className="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+              >
+                Sign up
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
@@ -293,14 +315,16 @@ const Landing = () => {
                     />
                   </div>
                   <div className="flex flex-col items-start justify-center">
-                    <h4 className="font-bold text-gray-800">Pithuka Mathnapriya</h4>
+                    <h4 className="font-bold text-gray-800">
+                      Pithuka Mathnapriya
+                    </h4>
                     <p className="text-gray-600">CTO of NSBM</p>
                   </div>
                 </div>
                 <blockquote className="mt-8 text-lg text-gray-500">
                   "This is a no-brainer if you want to take your business to the
-                  next level. If you are looking for the ultimate IT toolset, this
-                  is it!"
+                  next level. If you are looking for the ultimate IT toolset,
+                  this is it!"
                 </blockquote>
               </div>
               <div className="flex flex-col items-start justify-start w-full h-auto px-0 mx-0 mb-12 border-l border-r border-transparent lg:w-1/3 lg:mb-0 lg:px-8 lg:mx-8 lg:border-gray-200">

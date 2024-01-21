@@ -18,6 +18,7 @@ export const AuthContextProvider = ({ children }) => {
     user: null,
   });
 
+  // Use for token in local storage, when refreshed
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
 
